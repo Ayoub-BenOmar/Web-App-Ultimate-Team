@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Ultimate Team</title>
+</head>
+<body class="bg-[#333333] text-white">
+
+    <!-- navbar -->
+    <nav class="bg-black border-gray-200">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <span class="self-center text-gray-400 text-2xl font-semibold whitespace-nowrap">UltimateTeam</span>
+        </a>
+        <div class="flex md:order-2">
+          <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search" aria-expanded="false" class="md:hidden text-gray-500 hover:bg-gray-100 rounded-lg text-sm p-2.5 me-1">
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+            <span class="sr-only">Search</span>
+          </button>
+          <div class="relative hidden md:block">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+              </svg>
+              <span class="sr-only">Search icon</span>
+            </div>
+            <input type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search...">
+          </div>
+          <button data-collapse-toggle="navbar-search" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100" aria-controls="navbar-search" aria-expanded="false">
+              <span class="sr-only">Open main menu</span>
+              <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+              </svg>
+          </button>
+        </div>
+          <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
+            <div class="relative mt-3 md:hidden">
+              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
+              </div>
+              <input type="text" id="search-navbar" class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50" placeholder="Search...">
+            </div>
+            <ul class="flex text-lg flex-col p-4 md:p-0 mt-4 font-semibold md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+              <li>
+                <a href="#" class="block py-2 px-3 text-white bg-white rounded md:bg-transparent md:text-white md:p-0" aria-current="page">Squad Builder</a>
+              </li>
+              <li>
+                <a href="#" class="block py-2 px-3 text-gray-400 rounded hover:bg-white md:hover:bg-transparent md:hover:text-white md:p-0">Player</a>
+              </li>
+              <li>
+                <a href="#" class="block py-2 px-3 text-gray-400 rounded hover:bg-white md:hover:bg-transparent md:hover:text-white md:p-0">Market</a>
+              </li>
+              <li>
+                <a href="#" class="block py-2 px-3 text-gray-400 rounded hover:bg-white md:hover:bg-transparent md:hover:text-white md:p-0">Tournaments</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container mx-auto px-4 py-6">
+        <div class="text-center">
+            <p class="text-lg mb-4 text-gray-300 font-semibold">Build your ultimate squad and dominate FUT Champions!</p>
+            <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+                Customize Squad
+            </button>
+        </div>
+    </div>
+
+    <section class="container mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-[70%,1fr] gap-6">
+        <div class="bg-[#444444] rounded-lg shadow-xl relative">
+            <div class="relative">
+                <img src="Pitch-removebg-preview.png" alt="Football Pitch" class="w-full h-auto">
+                
+                <div class="absolute" style="top: 10%; left: 50%; transform: translateX(-50%);">
+                    <div class="p-1 flex items-center justify-center shadow-lg">
+                        <img src="messi.png" alt="Goalkeeper" class="h-20 w-20 object-contain">
+                    </div>
+                </div>
+
+                <div class="absolute" style="top: 25%; left: 20%;">
+                    <div class="p-1 flex items-center justify-center shadow-lg">
+                        <img src="messi.png" alt="Left Back" class="h-20 w-20 object-contain">
+                    </div>
+                </div>
+                <div class="absolute" style="top: 25%; left: 35%;">
+                    <div class="p-1 flex items-center justify-center shadow-lg">
+                        <img src="messi.png" alt="Center Back" class="h-20 w-20 object-contain">
+                    </div>
+                </div>
+                <div class="absolute" style="top: 25%; left: 65%;">
+                    <div class="p-1 flex items-center justify-center shadow-lg">
+                        <img src="messi.png" alt="Center Back" class="h-20 w-20 object-contain">
+                    </div>
+                </div>
+                <div class="absolute" style="top: 25%; left: 80%;">
+                    <div class="p-1 flex items-center justify-center shadow-lg">
+                        <img src="messi.png" alt="Right Back" class="h-20 w-20 object-contain">
+                    </div>
+                </div>
+
+                <div class="absolute" style="top: 45%; left: 35%;">
+                    <div class="p-1 flex items-center justify-center shadow-lg">
+                        <img src="messi.png" alt="Central Midfielder" class="h-20 w-20 object-contain">
+                    </div>
+                </div>
+                <div class="absolute" style="top: 45%; left: 65%;">
+                    <div class="p-1 flex items-center justify-center shadow-lg">
+                        <img src="messi.png" alt="Central Midfielder" class="h-20 w-20 object-contain">
+                    </div>
+                </div>
+
+                <div class="absolute" style="top: 65%; left: 30%;">
+                    <div class="p-1 flex items-center justify-center shadow-lg">
+                        <img src="messi.png" alt="Left Attacking Midfielder" class="h-20 w-20 object-contain">
+                    </div>
+                </div>
+                <div class="absolute" style="top: 65%; left: 70%;">
+                    <div class="p-1 flex items-center justify-center shadow-lg">
+                        <img src="messi.png" alt="Right Attacking Midfielder" class="h-20 w-20 object-contain">
+                    </div>
+                </div>
+
+                <div class="absolute" style="top: 85%; left: 40%;">
+                    <div class="p-1 flex items-center justify-center shadow-lg">
+                        <img src="messi.png" alt="Left Striker" class="h-20 w-20 object-contain">
+                    </div>
+                </div>
+                <div class="absolute" style="top: 85%; left: 60%;">
+                    <div class="p-1 flex items-center justify-center shadow-lg">
+                        <img src="messi.png" alt="Right Striker" class="h-20 w-20 object-contain">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-[#444444] rounded-lg p-4 shadow-xl">
+            <h2 class="text-xl font-bold mb-4 text-center">Substitutes</h2>
+            <div class="grid grid-cols-1 gap-4">
+                <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
+                    <img src="messi.png" alt="Sub Player" class="h-16 w-16 object-contain">
+                    <span class="text-white">Substitute 1</span>
+                </div>
+                <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
+                    <img src="messi.png" alt="Sub Player" class="h-16 w-16 object-contain">
+                    <span class="text-white">Substitute 2</span>
+                </div>
+                <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
+                    <img src="messi.png" alt="Sub Player" class="h-16 w-16 object-contain">
+                    <span class="text-white">Substitute 3</span>
+                </div>
+                <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
+                    <img src="messi.png" alt="Sub Player" class="h-16 w-16 object-contain">
+                    <span class="text-white">Substitute 4</span>
+                </div>
+                <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
+                    <img src="messi.png" alt="Sub Player" class="h-16 w-16 object-contain">
+                    <span class="text-white">Substitute 5</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
