@@ -48,16 +48,16 @@
             </div>
             <ul class="flex text-lg flex-col p-4 md:p-0 mt-4 font-semibold md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
               <li>
-                <a href="#" class="block py-2 px-3 text-white bg-white rounded md:bg-transparent md:text-white md:p-0" aria-current="page">Squad Builder</a>
+                <a href="#" class="block py-2 px-3 text-[#d6a54f] bg-white rounded md:bg-transparent md:text-[#d6a54f] md:p-0" aria-current="page">Squad Builder</a>
               </li>
               <li>
-                <a href="#" class="block py-2 px-3 text-gray-400 rounded hover:bg-white md:hover:bg-transparent md:hover:text-white md:p-0">Player</a>
+                <a href="#" class="block py-2 px-3 text-gray-400 rounded hover:bg-[#d6a54f] md:hover:bg-transparent md:hover:text-[#d6a54f] md:p-0">Player</a>
               </li>
               <li>
-                <a href="#" class="block py-2 px-3 text-gray-400 rounded hover:bg-white md:hover:bg-transparent md:hover:text-white md:p-0">Market</a>
+                <a href="#" class="block py-2 px-3 text-gray-400 rounded hover:bg-[#d6a54f] md:hover:bg-transparent md:hover:text-[#d6a54f] md:p-0">Market</a>
               </li>
               <li>
-                <a href="#" class="block py-2 px-3 text-gray-400 rounded hover:bg-white md:hover:bg-transparent md:hover:text-white md:p-0">Tournaments</a>
+                <a href="#" class="block py-2 px-3 text-gray-400 rounded hover:bg-[#d6a54f] md:hover:bg-transparent md:hover:text-[#d6a54f] md:p-0">Tournaments</a>
               </li>
             </ul>
           </div>
@@ -67,9 +67,117 @@
     <div class="container mx-auto px-4 py-6">
         <div class="text-center">
             <p class="text-lg mb-4 text-gray-300 font-semibold">Build your ultimate squad and dominate FUT Champions</p>
-            <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+            <button id="add-player" class="bg-[#d6a54f] hover:bg-[#bc953d] text-[#333333] font-bold py-2 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
                 Add Player
             </button>
+            <div id="modalPlayer" class="hidden  flex justify-center backdrop-blur-sm overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative p-4 w-full max-w-md max-h-full ">
+                    <div class="relative bg-[#333333] rounded-lg shadow ">
+                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-lg font-semibold text-gray-400">
+                                Create New Player
+                            </h3>
+                            <button id="closeModal" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" data-modal-toggle="crud-modal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <form class="p-4 md:p-5">
+                            <div class="grid gap-4 mb-4 grid-cols-2">
+                                <div class="col-span-2">
+                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-400 ">Player Name</label>
+                                    <input type="text" name="name" id="player-name" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg block w-full p-2.5" placeholder="Player Name" required="">
+                                </div>
+                            </div>
+                                <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div class="col-span-2 sm:col-span-1">
+                                    <label for="Position" class="block mb-2 text-sm font-medium text-gray-400">Nationality</label>
+                                    <select id="Position" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg block w-full p-2.5">
+                                        <option disabled selected="">Country</option>
+                                        <option value="br">Brazil</option>
+                                        <option value="fr">France</option>
+                                        <option value="arg">Argentina</option>
+                                        <option value="mr">Morocco</option>
+                                        <option value="sp">Spain</option>
+                                        <option value="en">England</option>
+                                        <option value="it">Italy</option>
+                                        <option value="pr">Portugal</option>
+                                        <option value="gr">Germany</option>
+                                        <option value="nd">Netherlands</option>
+                                        <option value="bl">Belgium</option>
+                                    </select>
+                                </div>
+                                <div class="col-span-2 sm:col-span-1">
+                                    <label for="Position" class="block mb-2 text-sm font-medium text-gray-400">Club</label>
+                                    <select id="Position" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg block w-full p-2.5">
+                                        <option disabled selected="">Club</option>
+                                        <option value="c1">Inter Miami</option>
+                                        <option value="c2">Al Nassr</option>
+                                        <option value="c3">Manchester City</option>
+                                        <option value="c4">Real Madrid</option>
+                                        <option value="c5">Liverpool</option>
+                                        <option value="c6">Bayern Munich</option>
+                                        <option value="c7">Al-Hilal</option>
+                                        <option value="c8">Manchester United</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-span-2 sm:col-span-1">
+                                    <label for="rating" class="block mb-2 text-sm font-medium text-gray-400">Rating</label>
+                                    <input type="number" name="rating" id="rating" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg block w-full p-2.5" placeholder="99" required="">
+                                </div>
+                                <div class="col-span-2 sm:col-span-1">
+                                    <label for="Position" class="block mb-2 text-sm font-medium text-gray-400">Position</label>
+                                    <select id="Position" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg block w-full p-2.5">
+                                        <option disabled selected="">Select Position</option>
+                                        <option value="GK">GK</option>
+                                        <option value="CB">CB</option>
+                                        <option value="RB">RB</option>
+                                        <option value="LB">LB</option>
+                                        <option value="CDM">CDM</option>
+                                        <option value="CM">CM</option>
+                                        <option value="LW">LW</option>
+                                        <option value="RW">RW</option>
+                                        <option value="ST">ST</option>
+                                    </select>
+                                </div>
+                                </div>
+                                <div class="grid grid-cols-3 gap-6 mb-4">
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="pac" class="block mb-2 text-sm font-medium text-gray-400">PAC:</label>
+                                        <input type="number" id="pac" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg block w-full p-2.5" placeholder="99" required />
+                                    </div>
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="sho" class="block mb-2 text-sm font-medium text-gray-400">SHO:</label>
+                                        <input type="number" id="sho" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg block w-full p-2.5" placeholder="99" required />
+                                    </div>
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="pas" class="block mb-2 text-sm font-medium text-gray-400">PAS:</label>
+                                        <input type="number" id="pas" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg block w-full p-2.5" placeholder="99" required />
+                                    </div>
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="dri" class="block mb-2 text-sm font-medium text-gray-400">DRI:</label>
+                                        <input type="number" id="dri" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg block w-full p-2.5" placeholder="99" required />
+                                    </div>
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="def" class="block mb-2 text-sm font-medium text-gray-400">DEF:</label>
+                                        <input type="number" id="def" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg block w-full p-2.5" placeholder="99" required />
+                                    </div>
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="phy" class="block mb-2 text-sm font-medium text-gray-400">PHY:</label>
+                                        <input type="number" id="phy" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg block w-full p-2.5" placeholder="99" required />
+                                    </div>
+                                </div>
+                            
+                            <button type="submit" class="bg-[#d6a54f] hover:bg-[#bc953d] text-[#333333] font-bold py-2 px-6 mt-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+                                Add New Player
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div> 
         </div>
     </div>
 
@@ -78,42 +186,75 @@
             <div class="relative">
                 <img src="pics/Pitch-removebg-preview.png" alt="Football Pitch" class="w-full h-auto mt-6">
 
-                <div class="absolute" style="top: -5%; left: 40%; transform: translateX(-50%);">
-                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="150" width="100" alt="">
+                <div class="absolute" style="top: -8%; left: 35%;;">
+                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="170" width="120" alt="">
+                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                        <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="" class="object-contain mb-5" height="60" width="60">
+                    </div>
                 </div>
-                <div class="absolute" style="top: -5%; left: 60%; transform: translateX(-50%);">
-                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="150" width="100" alt="">
-                </div>
-
-                <div class="absolute" style="top: 15%; left: 50%; transform: translateX(-50%);">
-                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="150" width="100" alt="">
-                </div>
-                <div class="absolute" style="top: 45%; left: 50%; transform: translateX(-50%);">
-                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="150" width="100" alt="">
-                </div>
-                <div class="absolute" style="top: 25%; left: 30%; transform: translateX(-50%);">
-                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="150" width="100" alt="">
-                </div>
-                <div class="absolute" style="top: 25%; right: 20%; transform: translateX(-50%);">
-                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="150" width="100" alt="">
+                <div class="absolute" style="top: -8%; left: 55%;;">
+                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="170" width="120" alt="">
+                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                        <img src="https://cdn.sofifa.net/players/209/331/25_120.png" alt="" class="object-contain mb-5" height="60" width="60">
+                    </div>
                 </div>
 
-                <div class="absolute" style="top: 50%; right: 5%; transform: translateX(-50%);">
-                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="150" width="100" alt="">
+                <div class="absolute" style="top: 12%; left: 45%;;">
+                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="170" width="120" alt="">
+                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                        <img src="https://cdn.sofifa.net/players/158/023/25_120.png" alt="AM" class="object-contain mb-5" height="60" width="60">
+                    </div>
                 </div>
-                <div class="absolute" style="top: 50%; left: 15%; transform: translateX(-50%);">
-                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="150" width="100" alt="">
+                <div class="absolute" style="top: 42%; left: 45%;;">
+                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="170" width="120" alt="">
+                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                        <img src="https://cdn.sofifa.net/players/215/914/25_120.png" alt="CDM" class="object-contain mb-5" height="60" width="60">
+                    </div>
+                </div>
+                <div class="absolute" style="top: 22%; left: 25%;;">
+                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="170" width="120" alt="">
+                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                        <img src="https://cdn.sofifa.net/players/177/003/25_120.png" alt="CM" class="object-contain mb-5" height="60" width="60">
+                    </div>
+                </div>
+                <div class="absolute" style="top: 22%; right: 25%;;">
+                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="170" width="120" alt="">
+                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                        <img src="https://cdn.sofifa.net/players/192/985/25_120.png" alt="CM" class="object-contain mb-5" height="60" width="60">
+                    </div>
                 </div>
 
-                <div class="absolute" style="top: 60%; left: 35%; transform: translateX(-50%);">
-                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="150" width="100" alt="">
+                <div class="absolute" style="top: 47%; right: 9%;;">
+                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="170" width="120" alt="">
+                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                        <img src="https://cdn.sofifa.net/players/231/281/25_120.png" alt="RB" class="object-contain mb-5" height="60" width="60">
+                    </div>
                 </div>
-                <div class="absolute" style="top: 60%; right: 25%; transform: translateX(-50%);">
-                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="150" width="100" alt="">
+                <div class="absolute" style="top: 47%; left: 10%;;">
+                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="170" width="120" alt="">
+                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                        <img src="https://cdn.sofifa.net/players/234/396/25_120.png" alt="LB" class="object-contain mb-5" height="60" width="60">
+                    </div>
                 </div>
 
-                <div class="absolute" style="top: 75%; left: 50%; transform: translateX(-50%);">
-                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="150" width="100" alt="">
+                <div class="absolute" style="top: 57%; left: 30%;;">
+                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="170" width="120" alt="">
+                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                        <img src="https://cdn.sofifa.net/players/203/376/25_120.png" alt="LCB" class="object-contain mb-5" height="60" width="60">
+                    </div>
+                </div>
+                <div class="absolute" style="top: 57%; right: 30%;;">
+                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="170" width="120" alt="">
+                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                        <img src="https://cdn.sofifa.net/players/205/452/25_120.png" alt="RCB" class="object-contain mb-5" height="60" width="60">
+                    </div>
+                </div>
+
+                <div class="absolute" style="top: 72%; left: 45%;;">
+                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="170" width="120" alt="">
+                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                        <img src="https://cdn.sofifa.net/players/200/389/25_120.png" alt="GK" class="object-contain mb-5" height="60" width="60">
+                    </div>
                 </div>
 
                 <!-- <div class="absolute" style="top: 10%; left: 50%; transform: translateX(-50%);">
@@ -170,29 +311,51 @@
 
         <div class="bg-[#444444] rounded-lg p-4 shadow-xl">
             <h2 class="text-xl font-bold mb-4 text-center">Substitutes</h2>
-            <div class="grid grid-cols-1 gap-4">
+            <div class="grid grid-cols-2 gap-4">
                 <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
-                    <img src="pics/messi.png" alt="Sub Player" class="h-16 w-16 object-contain">
+                    <img src="pics/messi.png" alt="" class="h-16 w-16 object-contain">
                     <span class="text-white">Substitute 1</span>
                 </div>
                 <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
-                    <img src="pics/messi.png" alt="Sub Player" class="h-16 w-16 object-contain">
+                    <img src="pics/messi.png" alt="" class="h-16 w-16 object-contain">
                     <span class="text-white">Substitute 2</span>
                 </div>
                 <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
-                    <img src="pics/messi.png" alt="Sub Player" class="h-16 w-16 object-contain">
+                    <img src="pics/messi.png" alt="" class="h-16 w-16 object-contain">
                     <span class="text-white">Substitute 3</span>
                 </div>
                 <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
-                    <img src="pics/messi.png" alt="Sub Player" class="h-16 w-16 object-contain">
+                    <img src="pics/messi.png" alt="" class="h-16 w-16 object-contain">
                     <span class="text-white">Substitute 4</span>
                 </div>
                 <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
-                    <img src="pics/messi.png" alt="Sub Player" class="h-16 w-16 object-contain">
+                    <img src="pics/messi.png" alt="" class="h-16 w-16 object-contain">
                     <span class="text-white">Substitute 5</span>
+                </div>
+                <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
+                    <img src="pics/messi.png" alt="" class="h-16 w-16 object-contain">
+                    <span class="text-white">Substitute 6</span>
+                </div>
+                <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
+                    <img src="pics/messi.png" alt="" class="h-16 w-16 object-contain">
+                    <span class="text-white">Substitute 7</span>
+                </div>
+                <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
+                    <img src="pics/messi.png" alt="" class="h-16 w-16 object-contain">
+                    <span class="text-white">Substitute 8</span>
+                </div>
+                <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
+                    <img src="pics/messi.png" alt="" class="h-16 w-16 object-contain">
+                    <span class="text-white">Substitute 9</span>
+                </div>
+                <div class="bg-[#555555] rounded-lg p-2 flex items-center space-x-4">
+                    <img src="pics/messi.png" alt="" class="h-16 w-16 object-contain">
+                    <span class="text-white">Substitute 10</span>
                 </div>
             </div>
         </div>
     </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
