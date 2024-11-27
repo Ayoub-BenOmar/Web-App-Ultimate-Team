@@ -48,15 +48,48 @@ newPlayer.addEventListener("submit", function(event){
     }
 
     let playerCard = document.createElement("div");
-    playerCard.classList.add("bg-[#555555]", "rounded-lg", "p-2", "flex", "justify-center", "space-x-4");
+    playerCard.classList.add("p-2", "flex", "justify-center", "space-x-4");
 
     playerCard.innerHTML = `
-                <div class="relative">
-                    <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="170" width="120" alt="">
-                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                        <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="Left ST" class="object-contain mb-4" height="45" width="45">
+                <div class="relative flex justify-center items-center">
+        <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="170" width="120" alt="">
+        <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+            <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="Left ST" class="object-contain mb-4" height="60" width="60">
+            <div class="absolute left-[17%] top-[20%] text-center text-black">
+                <div class="font-bold text-xs">97</div>
+                <div class="font-semibold text-[0.5rem]">${playerPosition}</div>
+            </div>
+            <div class="absolute top-[64%] text-center text-black">
+                <div class="font-bold text-[0.5rem]">${playerName}</div>
+                <div class="flex font-semibold text-[0.4rem] gap-1">
+                    <div class="flex flex-col">
+                        <span>PAC</span>
+                        <span>${playerPace}</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span>SHO</span>
+                        <span>${playerShooting}</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span>PAS</span>
+                        <span>${playerPassing}</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span>DRI</span>
+                        <span>${playerDribbling}</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span>DEF</span>
+                        <span>${playerDeffending}</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span>PHY</span>
+                        <span>${playerPhysical}</span>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
     `
 
     Substitutes.appendChild(playerCard);
