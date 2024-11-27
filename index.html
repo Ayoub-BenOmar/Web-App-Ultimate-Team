@@ -52,7 +52,7 @@
                 <a href="#" class="block py-2 px-3 text-[#d6a54f] bg-white rounded md:bg-transparent md:text-[#d6a54f] md:p-0" aria-current="page">Squad Builder</a>
               </li>
               <li>
-                <a href="#" class="block py-2 px-3 text-gray-400 rounded hover:bg-[#d6a54f] md:hover:bg-transparent md:hover:text-[#d6a54f] md:p-0">Player</a>
+                <a href="#" class="block py-2 px-3 text-gray-400 rounded hover:bg-[#d6a54f] md:hover:bg-transparent md:hover:text-[#d6a54f] md:p-0">Players</a>
               </li>
               <li>
                 <a href="#" class="block py-2 px-3 text-gray-400 rounded hover:bg-[#d6a54f] md:hover:bg-transparent md:hover:text-[#d6a54f] md:p-0">Market</a>
@@ -92,7 +92,7 @@
                                     <input type="text" name="name" id="player-name" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg block w-full p-2.5" placeholder="Player Name">
                                 </div>
                             </div>
-                            <div class="grid grid-cols-3 gap-4 mb-4">
+                            <div class="grid grid-cols-4 gap-4 mb-4">
                                 <div class="col-span-2 sm:col-span-1">
                                     <label for="country" class="block mb-2 text-sm font-medium text-gray-400">Nationality</label>
                                     <select id="country" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-2.5">
@@ -101,13 +101,21 @@
                                         <option value="fr">France</option>
                                         <option value="arg">Argentina</option>
                                         <option value="mr">Morocco</option>
-                                        <option value="sp">Spain</option>
                                         <option value="en">England</option>
                                         <option value="it">Italy</option>
                                         <option value="pr">Portugal</option>
                                         <option value="gr">Germany</option>
                                         <option value="nd">Netherlands</option>
                                         <option value="bl">Belgium</option>
+                                    </select>
+                                </div>
+                                <div class="col-span-2 sm:col-span-1">
+                                    <label for="cards" class="block mb-2 text-sm font-medium text-gray-400">Cards</label>
+                                    <select id="cardtype" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-2.5">
+                                        <option disabled selected="">Card</option>
+                                        <option value="gd">Gold</option>
+                                        <option value="ic">Icon</option>
+                                        <option value="sl">Silver</option>
                                     </select>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
@@ -118,10 +126,9 @@
                                         <option value="c2">Al Nassr</option>
                                         <option value="c3">Manchester City</option>
                                         <option value="c4">Real Madrid</option>
-                                        <option value="c5">Liverpool</option>
-                                        <option value="c6">Bayern Munich</option>
-                                        <option value="c7">Al-Hilal</option>
-                                        <option value="c8">Manchester United</option>
+                                        <option value="c5">Bayern Munich</option>
+                                        <option value="c6">Al-Hilal</option>
+                                        <option value="c7">Manchester United</option>
                                     </select>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">

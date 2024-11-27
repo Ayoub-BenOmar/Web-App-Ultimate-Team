@@ -1,3 +1,4 @@
+
 let addPlayer = document.getElementById("add-player");
 let playerModal = document.getElementById("modalPlayer");
 let closeModal = document.getElementById("closeModal");
@@ -19,6 +20,7 @@ newPlayer.addEventListener("submit", function(event){
     let playerPosition = document.getElementById("Position").value;
     let playerClub = document.getElementById("club").value;
     let playerCountry = document.getElementById("country").value;
+    let cardType = document.getElementById("cardtype").value;
     let playerPace = parseInt(document.getElementById("pac").value);
     let playerShooting = parseInt(document.getElementById("sho").value);
     let playerPassing = parseInt(document.getElementById("pas").value);
@@ -47,12 +49,41 @@ newPlayer.addEventListener("submit", function(event){
        }
     }
 
+    let country = {
+        br: "https://cdn.sofifa.net/flags/br.png",
+        fr: "https://cdn.sofifa.net/flags/fr.png",
+        arg:"https://cdn.sofifa.net/flags/ar.png",
+        mr:"https://cdn.sofifa.net/flags/ma.png",
+        en:"https://cdn.sofifa.net/flags/gb-eng.png",
+        it:"https://cdn.sofifa.net/flags/it.png",
+        pr:"https://cdn.sofifa.net/flags/pt.png",
+        gr:"https://cdn.sofifa.net/flags/de.png",
+        nd:"https://cdn.sofifa.net/flags/nl.png",
+        bl:"https://cdn.sofifa.net/flags/be.png",
+    };
+
+    let club = {
+        c1: "https://cdn.sofifa.net/meta/team/239235/120.png",
+        c2: "https://cdn.sofifa.net/meta/team/2506/120.png",
+        c3: "https://cdn.sofifa.net/meta/team/9/120.png",
+        c4: "https://cdn.sofifa.net/meta/team/3468/120.png",
+        c5: "https://cdn.sofifa.net/meta/team/503/120.png",
+        c6: "https://cdn.sofifa.net/meta/team/7011/120.png",
+        c7: "https://cdn.sofifa.net/meta/team/14/120.png",
+    };
+
+    let cards = {
+        gd: "pics/badge_gold-removebg-preview.png",
+        ic: "pics/icon-25-removebg-preview.png",
+        sl: "pics/rare-silver-25-removebg-preview.png",
+    };
+
     let playerCard = document.createElement("div");
     playerCard.classList.add("p-2", "flex", "justify-center", "space-x-4");
 
     playerCard.innerHTML = `
                 <div class="relative flex justify-center items-center">
-        <img src="pics/badge_gold-removebg-preview.png" class="object-contain" height="170" width="120" alt="">
+        <img src="${cards[cardType]}" class="object-contain" height="170" width="120" alt="">
         <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
             <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="Left ST" class="object-contain mb-4" height="60" width="60">
             <div class="absolute left-[17%] top-[20%] text-center text-black">
@@ -86,6 +117,10 @@ newPlayer.addEventListener("submit", function(event){
                         <span>PHY</span>
                         <span>${playerPhysical}</span>
                     </div>
+                </div>
+                <div class="absolute flex gap-1 left-[38%] items-center">
+                    <div ><img src="${country[playerCountry]}" class="object-contain" width="10" height="10" alt=""></div>
+                    <div><img src="${club[playerClub]}" class="object-contain" width="10" height="10" alt=""></div>
                 </div>
             </div>
         </div>
