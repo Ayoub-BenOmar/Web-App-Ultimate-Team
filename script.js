@@ -113,7 +113,7 @@ newPlayer.addEventListener("submit", function (event) {
                 <div class="relative flex justify-center items-center text-black">
         <img src="${cards[cardType]}" class="object-contain" height="170" width="120" alt="">
         <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-            <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="Left ST" class="object-contain mb-4" height="60" width="60">
+            <img src="pics/anonym-removebg-preview.png" alt="Left ST" class="object-contain mb-6" height="60" width="60">
             <div class="absolute left-[17%] top-[15%] text-center text-black">
                 <div class="font-bold text-xs">97</div>
                 <div class="font-semibold text-[0.5rem]">${playerPosition.value}</div>
