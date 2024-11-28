@@ -73,26 +73,27 @@ newPlayer.addEventListener("submit", function(event){
     };
 
     let cards = {
-        gd: "pics/badge_gold-removebg-preview.png",
+        gd: "https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/rare-gold-25.webp",
         ic: "pics/icon-25-removebg-preview.png",
         sl: "pics/rare-silver-25-removebg-preview.png",
+        pk: "https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/rare-bronze-25.webp"
     };
 
     let playerCard = document.createElement("div");
     playerCard.classList.add("p-2", "flex", "justify-center", "space-x-4");
 
     playerCard.innerHTML = `
-                <div class="relative flex justify-center items-center">
+                <div class="relative flex justify-center items-center text-black">
         <img src="${cards[cardType]}" class="object-contain" height="170" width="120" alt="">
         <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
             <img src="https://cdn.sofifa.net/players/020/801/25_120.png" alt="Left ST" class="object-contain mb-4" height="60" width="60">
-            <div class="absolute left-[17%] top-[20%] text-center text-black">
+            <div class="absolute left-[17%] top-[15%] text-center text-black">
                 <div class="font-bold text-xs">97</div>
                 <div class="font-semibold text-[0.5rem]">${playerPosition}</div>
             </div>
-            <div class="absolute top-[64%] text-center text-black">
+            <div class="absolute top-[64%] text-center gap-1">
                 <div class="font-bold text-[0.5rem]">${playerName}</div>
-                <div class="flex font-semibold text-[0.4rem] gap-1">
+                <div class="flex font-semibold text-[0.4rem] gap-1 ">
                     <div class="flex flex-col">
                         <span>PAC</span>
                         <span>${playerPace}</span>
@@ -118,7 +119,7 @@ newPlayer.addEventListener("submit", function(event){
                         <span>${playerPhysical}</span>
                     </div>
                 </div>
-                <div class="absolute flex gap-1 left-[38%] items-center">
+                <div class="absolute flex gap-1 left-[38%] items-center mt-1">
                     <div ><img src="${country[playerCountry]}" class="object-contain" width="10" height="10" alt=""></div>
                     <div><img src="${club[playerClub]}" class="object-contain" width="10" height="10" alt=""></div>
                 </div>
