@@ -149,7 +149,7 @@
                                     </div>
                             </div>                                    
                                     
-                                <div class="grid grid-cols-3 gap-6 mb-4">
+                                <div id="otherStats" class="hidden grid grid-cols-3 gap-6 mb-4">
                                     <div class="col-span-2 sm:col-span-1">
                                         <label for="pac" class="block mb-2 text-sm font-medium text-gray-400">PAC:</label>
                                         <input type="number" id="pac" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-2.5" placeholder="99"/>
@@ -172,6 +172,33 @@
                                     </div>
                                     <div class="col-span-2 sm:col-span-1">
                                         <label for="phy" class="block mb-2 text-sm font-medium text-gray-400">PHY:</label>
+                                        <input type="number" id="phy" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-2.5" placeholder="99"/>
+                                    </div>
+                                </div>
+
+                                <div id="gkStats" class="hidden grid grid-cols-3 gap-6 mb-4">
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="div" class="block mb-2 text-sm font-medium text-gray-400">DIV:</label>
+                                        <input type="number" id="pac" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-2.5" placeholder="99"/>
+                                    </div>
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="han" class="block mb-2 text-sm font-medium text-gray-400">HAN:</label>
+                                        <input type="number" id="sho" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-2.5" placeholder="99"/>
+                                    </div>
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="kic" class="block mb-2 text-sm font-medium text-gray-400">KIC:</label>
+                                        <input type="number" id="pas" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-2.5" placeholder="99"/>
+                                    </div>
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="ref" class="block mb-2 text-sm font-medium text-gray-400">REF:</label>
+                                        <input type="number" id="dri" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-2.5" placeholder="99"/>
+                                    </div>
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="spd" class="block mb-2 text-sm font-medium text-gray-400">SPD:</label>
+                                        <input type="number" id="def" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-2.5" placeholder="99"/>
+                                    </div>
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="pos" class="block mb-2 text-sm font-medium text-gray-400">POS:</label>
                                         <input type="number" id="phy" class="bg-gray-50 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-2.5" placeholder="99"/>
                                     </div>
                                 </div>
@@ -320,7 +347,7 @@
 
         <div class="bg-[#444444] rounded-lg p-4 shadow-xl h-fit">
             <h2 class="text-xl font-bold mb-4 text-center">Substitutes</h2>
-            <div id="Substitutes" class="grid grid-cols-2 gap-4">
+            <div id="Substitutes" class="grid lg:grid-cols-2 gap-4 grid-cols-3">
                 <!-- <div class="bg-[#555555] rounded-lg p-2 flex justify-center space-x-4">
                     <img src="pics/messi.png" alt="" class="object-contain" height="100" width="100">
                 </div>
