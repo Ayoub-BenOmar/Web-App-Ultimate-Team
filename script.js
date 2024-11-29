@@ -11,6 +11,14 @@ let modalList = document.getElementById("list");
 let substitutePlayersContainer = document.getElementById("substitutePlayers");
 
 let playersList = [];
+let startingPlayers = {
+    'ST': null,
+    'CM': null,
+    'LW': null,
+    'RW': null,
+    'CB': null,
+    'GK': null
+};
 
 addPlayer.onclick = function () {
   playerModal.classList.remove("hidden");
@@ -111,7 +119,7 @@ newPlayer.addEventListener("submit", function (event) {
   playerCard.classList.add("p-2", "flex", "justify-center", "space-x-4");
 
   playerCard.innerHTML = `
-                <div class="relative flex justify-center items-center text-black">
+    <div class="relative flex justify-center items-center text-black">
         <img src="${cards[cardType]}" class="object-contain" height="170" width="120" alt="">
         <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
             <img src="pics/anonym-removebg-preview.png" alt="Left ST" class="object-contain mb-6" height="60" width="60">
@@ -156,8 +164,7 @@ newPlayer.addEventListener("submit", function (event) {
     </div>
     `;
   
-    playerModal.classList.add("hidden");
-
+  playerModal.classList.add("hidden");
 
   let playerData = {
     id: Date.now(),
@@ -175,6 +182,7 @@ newPlayer.addEventListener("submit", function (event) {
       physical: playerPhysical,
     },
     cardType: cardType,
+    cardElement: playerCard
   };
 
   playersList.push(playerData);
@@ -205,7 +213,8 @@ document.querySelectorAll(".btn-add").forEach(button => {
               <div class="text-gray-700">PAC: ${player.stats.pace}  ||  SHO: ${player.stats.shooting}  ||  PAS: ${player.stats.passing}  ||  DRI: ${player.stats.dribbling}  ||  DEF: ${player.stats.deffending}  ||  PHY: ${player.stats.physical}</div>
             </div>
           </div>
-          <button class="addPlayerButton bg-[#333333] hover:bg-[#bc953d] text-[#bc953d] hover:text-[#333333] px-3 py-1 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+          <button class="addPlayerButton bg-[#333333] hover:bg-[#bc953d] text-[#bc953d] hover:text-[#333333] px-3 py-1 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105" 
+                  data-player-id="${player.id}">
             Add
           </button>
         `;
@@ -217,8 +226,38 @@ document.querySelectorAll(".btn-add").forEach(button => {
 
 substitutePlayersContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("addPlayerButton")) {
-    let playerName = event.target.closest("div").querySelector("span").textContent;
-    console.log(`Player selected: ${playerName}`);
-    modalList.style.display = "none";
+    // Find the player in playersList
+    const playerId = parseInt(event.target.getAttribute('data-player-id'));
+    const selectedPlayer = playersList.find(player => player.id === playerId);
+
+    if (selectedPlayer) {
+      // Get the position container in the starting 11
+      const positionContainer = document.getElementById(selectedPlayer.position);
+
+      // Check if the position is already filled
+      const existingPlayerInPosition = startingPlayers[selectedPlayer.position];
+      if (existingPlayerInPosition) {
+        // If position is filled, swap back to substitutes
+        Substitutes.appendChild(existingPlayerInPosition.cardElement);
+      }
+
+      // Move the selected player to the position container
+      positionContainer.innerHTML = ''; // Clear any existing player
+      positionContainer.appendChild(selectedPlayer.cardElement);
+
+      // Update the startingPlayers object
+      startingPlayers[selectedPlayer.position] = selectedPlayer;
+
+      // Remove the player from the substitutes list
+      const playerIndex = playersList.findIndex(player => player.id === playerId);
+      if (playerIndex > -1) {
+        // You might want to modify this logic to keep the player in playersList 
+        // but mark it as in starting 11
+        // playersList.splice(playerIndex, 1);
+      }
+
+      // Close the modal
+      modalList.style.display = "none";
+    }
   }
 });
