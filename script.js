@@ -6,6 +6,10 @@ let Substitutes = document.getElementById("Substitutes");
 let otherStats = document.getElementById("otherStats");
 let gkStats = document.getElementById("gkStats");
 let playerPosition = document.getElementById("Position");
+let cancelModal = document.getElementById("cancelModal");
+let modalList = document.getElementById("list");
+
+let playersList = [];
 
 addPlayer.onclick = function () {
   playerModal.classList.remove("hidden");
@@ -13,7 +17,12 @@ addPlayer.onclick = function () {
 
 closeModal.onclick = function () {
   playerModal.classList.add("hidden");
+  newPlayer.reset();
 };
+
+cancelModal.onclick = function(){
+  list.style.display = "none";
+}
 
 playerPosition.addEventListener("change", (e) => {
   let selectedValue = e.target.value;
@@ -76,6 +85,10 @@ newPlayer.addEventListener("submit", function (event) {
     }
   }
 
+  let overAllRating = Math.round(
+    (playerPace + playerShooting + playerPassing + playerDribbling + playerDeffending + playerPhysical) / 6
+  );
+
   let country = {
     br: "https://cdn.sofifa.net/flags/br.png",
     fr: "https://cdn.sofifa.net/flags/fr.png",
@@ -115,7 +128,7 @@ newPlayer.addEventListener("submit", function (event) {
         <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
             <img src="pics/anonym-removebg-preview.png" alt="Left ST" class="object-contain mb-6" height="60" width="60">
             <div class="absolute left-[17%] top-[15%] text-center text-black">
-                <div class="font-bold text-xs">97</div>
+                <div class="font-bold text-xs">${overAllRating}</div>
                 <div class="font-semibold text-[0.5rem]">${playerPosition.value}</div>
             </div>
             <div class="absolute top-[64%] text-center gap-1">
@@ -154,9 +167,35 @@ newPlayer.addEventListener("submit", function (event) {
         </div>
     </div>
     `;
+  
+    playerModal.classList.add("hidden");
+
+    let playerData = {
+      id : Date.now(),
+      player : playerName,
+      position : playerPosition,
+      club : playerClub,
+      country : playerCountry,
+      rarting : overAllRating,
+      stats : {
+        pace : playerPace,
+        shooting : playerShooting,
+        passing : playerPassing,
+        dribbling : playerDribbling,
+        deffending : playerDeffending,
+        physical : playerPhysical,
+      },
+      cardType : cardType,
+    };
+
+    playersList.push(playerData);
 
   Substitutes.appendChild(playerCard);
-
-  newPlayer.reset();
-  playerModal.classList.add("hidden");
 });
+
+document.querySelectorAll(".btn-add").forEach(button =>{
+  button.addEventListener("click", function () {
+    document.getElementById('list').style.display = "flex";
+    
+  })
+})
