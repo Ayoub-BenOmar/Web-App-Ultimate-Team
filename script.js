@@ -189,7 +189,7 @@ newPlayer.addEventListener("submit", function (event) {
     };
 
     playersList.push(playerData);
-
+    newPlayer.reset();
   Substitutes.appendChild(playerCard);
 });
 
