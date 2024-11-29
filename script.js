@@ -173,7 +173,7 @@ newPlayer.addEventListener("submit", function (event) {
     let playerData = {
       id : Date.now(),
       player : playerName,
-      position : playerPosition,
+      position : playerPosition.value,
       club : playerClub,
       country : playerCountry,
       rarting : overAllRating,
@@ -193,9 +193,14 @@ newPlayer.addEventListener("submit", function (event) {
   Substitutes.appendChild(playerCard);
 });
 
+let div = document.getElementById('ST');
+
 document.querySelectorAll(".btn-add").forEach(button =>{
   button.addEventListener("click", function () {
     document.getElementById('list').style.display = "flex";
-    
+    let filterPosition  = playersList.filter(
+      player => player.position === div.getAttribute('id')
+    )
+    console.log(filterPosition)
   })
 })
