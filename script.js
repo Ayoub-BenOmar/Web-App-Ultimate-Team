@@ -8,6 +8,7 @@ let gkStats = document.getElementById("gkStats");
 let playerPosition = document.getElementById("Position");
 let cancelModal = document.getElementById("cancelModal");
 let modalList = document.getElementById("list");
+let substitutePlayersContainer = document.getElementById("substitutePlayers");
 
 let playersList = [];
 
@@ -20,9 +21,9 @@ closeModal.onclick = function () {
   newPlayer.reset();
 };
 
-cancelModal.onclick = function(){
-  list.style.display = "none";
-}
+cancelModal.onclick = function () {
+  modalList.style.display = "none";
+};
 
 playerPosition.addEventListener("change", (e) => {
   let selectedValue = e.target.value;
@@ -51,13 +52,6 @@ newPlayer.addEventListener("submit", function (event) {
   let playerDeffending = parseInt(document.getElementById("def").value);
   let playerPhysical = parseInt(document.getElementById("phy").value);
 
-//   let playerDiving = parseInt(document.getElementById("div").value);
-//   let playerHandling = parseInt(document.getElementById("han").value);
-//   let playerKicking = parseInt(document.getElementById("kic").value);
-//   let playerReflex = parseInt(document.getElementById("ref").value);
-//   let playerSpeed = parseInt(document.getElementById("spd").value);
-//   let playerPositioning = parseInt(document.getElementById("pos").value);
-
   if (!playerName || !playerPosition.value || !playerClub || !playerCountry) {
     alert("Please fill all the player informations.");
     return;
@@ -70,12 +64,6 @@ newPlayer.addEventListener("submit", function (event) {
     { name: "dribbling", value: playerDribbling },
     { name: "deffending", value: playerDeffending },
     { name: "physical", value: playerPhysical },
-    // { name: "diving", value: playerDiving },
-    // { name: "handling", value: playerHandling },
-    // { name: "kicking", value: playerKicking },
-    // { name: "reflex", value: playerReflex },
-    // { name: "speed", value: playerSpeed },
-    // { name: "positioning", value: playerPositioning }
   ];
 
   for (let stat of statsValidation) {
@@ -170,37 +158,67 @@ newPlayer.addEventListener("submit", function (event) {
   
     playerModal.classList.add("hidden");
 
-    let playerData = {
-      id : Date.now(),
-      player : playerName,
-      position : playerPosition.value,
-      club : playerClub,
-      country : playerCountry,
-      rarting : overAllRating,
-      stats : {
-        pace : playerPace,
-        shooting : playerShooting,
-        passing : playerPassing,
-        dribbling : playerDribbling,
-        deffending : playerDeffending,
-        physical : playerPhysical,
-      },
-      cardType : cardType,
-    };
 
-    playersList.push(playerData);
-    newPlayer.reset();
+  let playerData = {
+    id: Date.now(),
+    player: playerName,
+    position: playerPosition.value,
+    club: playerClub,
+    country: playerCountry,
+    rating: overAllRating,
+    stats: {
+      pace: playerPace,
+      shooting: playerShooting,
+      passing: playerPassing,
+      dribbling: playerDribbling,
+      deffending: playerDeffending,
+      physical: playerPhysical,
+    },
+    cardType: cardType,
+  };
+
+  playersList.push(playerData);
+  playerModal.classList.add("hidden");
+  newPlayer.reset();
   Substitutes.appendChild(playerCard);
 });
 
-let div = document.getElementById('ST');
-
-document.querySelectorAll(".btn-add").forEach(button =>{
+document.querySelectorAll(".btn-add").forEach(button => {
   button.addEventListener("click", function () {
-    document.getElementById('list').style.display = "flex";
-    let filterPosition  = playersList.filter(
-      player => player.position === div.getAttribute('id')
-    )
-    console.log(filterPosition)
-  })
-})
+    let position = button.closest(".position-btn").id;
+    modalList.style.display = "flex";
+
+    let filteredPlayers = playersList.filter(player => player.position === position);
+
+    substitutePlayersContainer.innerHTML = "";
+    if (filteredPlayers.length === 0) {
+      substitutePlayersContainer.innerHTML = "<p class='text-gray-500'>No players available for this position.</p>";
+    } else {
+      filteredPlayers.forEach(player => {
+        let playerItem = document.createElement("div");
+        playerItem.className = "flex justify-between items-center p-2 bg-gray-100 rounded-lg shadow-sm";
+        playerItem.innerHTML = `
+          <div class="flex items-center gap-2">
+            <img src="pics/anonym-removebg-preview.png" class="object-contain" height="40" width="40">
+            <div>
+              <span class="text-gray-700">${player.player} (OVR: ${player.rating})</span>
+              <div class="text-gray-700">PAC: ${player.stats.pace}  ||  SHO: ${player.stats.shooting}  ||  PAS: ${player.stats.passing}  ||  DRI: ${player.stats.dribbling}  ||  DEF: ${player.stats.deffending}  ||  PHY: ${player.stats.physical}</div>
+            </div>
+          </div>
+          <button class="addPlayerButton bg-[#333333] hover:bg-[#bc953d] text-[#bc953d] hover:text-[#333333] px-3 py-1 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+            Add
+          </button>
+        `;
+        substitutePlayersContainer.appendChild(playerItem);
+      });
+    }
+  });
+});
+
+substitutePlayersContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("addPlayerButton")) {
+    let playerName = event.target.closest("div").querySelector("span").textContent;
+    console.log(`Player selected: ${playerName}`);
+    modalList.style.display = "none";
+  }
+});
