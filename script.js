@@ -9,19 +9,28 @@ let playerPosition = document.getElementById("Position");
 let cancelModal = document.getElementById("cancelModal");
 let modalList = document.getElementById("list");
 let substitutePlayersContainer = document.getElementById("substitutePlayers");
+const burgerMenu = document.getElementById("burger-menu");
+const navLinks = document.getElementById("nav-links");
 
 let playersList = [];
 let startingPlayers = {
-    'ST': [],
-    'CM': [],
-    'CDM': [],
-    'LW': [],
-    'RW': [],
-    'RB': [],
-    'LB': [],
-    'CB': [],
-    'GK': []
+  ST: [],
+  CM: [],
+  CDM: [],
+  LW: [],
+  RW: [],
+  RB: [],
+  LB: [],
+  CB: [],
+  GK: [],
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+  burgerMenu.addEventListener("click", () => {
+      navLinks.classList.toggle("hidden");
+  });
+});
+
 
 addPlayer.onclick = function () {
   playerModal.classList.remove("hidden");
@@ -85,7 +94,13 @@ newPlayer.addEventListener("submit", function (event) {
   }
 
   let overAllRating = Math.round(
-    (playerPace + playerShooting + playerPassing + playerDribbling + playerDeffending + playerPhysical) / 6
+    (playerPace +
+      playerShooting +
+      playerPassing +
+      playerDribbling +
+      playerDeffending +
+      playerPhysical) /
+      6
   );
 
   let country = {
@@ -167,7 +182,7 @@ newPlayer.addEventListener("submit", function (event) {
     </div>
     <button class="remove-player-btn absolute top-0 right-0 m-1 bg-red-500 text-white px-2 py-1 rounded hidden">Remove</button>
     `;
-  
+
   playerModal.classList.add("hidden");
 
   let playerData = {
@@ -186,7 +201,7 @@ newPlayer.addEventListener("submit", function (event) {
       physical: playerPhysical,
     },
     cardType: cardType,
-    cardElement: playerCard
+    cardElement: playerCard,
   };
 
   playersList.push(playerData);
@@ -194,15 +209,19 @@ newPlayer.addEventListener("submit", function (event) {
   newPlayer.reset();
   Substitutes.appendChild(playerCard);
 
-  const removePlayerBtn = playerCard.querySelector('.remove-player-btn');
-  removePlayerBtn.addEventListener('click', () => {
-    Object.keys(startingPlayers).forEach(position => {
-      const index = startingPlayers[position].findIndex(p => p.id === playerData.id);
+  const removePlayerBtn = playerCard.querySelector(".remove-player-btn");
+  removePlayerBtn.addEventListener("click", () => {
+    Object.keys(startingPlayers).forEach((position) => {
+      const index = startingPlayers[position].findIndex(
+        (p) => p.id === playerData.id
+      );
       if (index !== -1) {
         startingPlayers[position].splice(index, 1);
-        
-        const positionContainers = document.querySelectorAll(`.position-${position}`);
-        positionContainers.forEach(container => {
+
+        const positionContainers = document.querySelectorAll(
+          `.position-${position}`
+        );
+        positionContainers.forEach((container) => {
           if (container.contains(playerCard)) {
             container.innerHTML = `
               <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain" height="150" width="100" alt="">
@@ -216,17 +235,17 @@ newPlayer.addEventListener("submit", function (event) {
                 ${position}
               </div>
             `;
-            
-            const btnAdd = container.querySelector('.btn-add');
-            btnAdd.addEventListener('click', handleAddPlayerClick);
+
+            const btnAdd = container.querySelector(".btn-add");
+            btnAdd.addEventListener("click", handleAddPlayerClick);
           }
         });
       }
     });
 
     Substitutes.removeChild(playerCard);
-    
-    const playerIndex = playersList.findIndex(p => p.id === playerData.id);
+
+    const playerIndex = playersList.findIndex((p) => p.id === playerData.id);
     if (playerIndex !== -1) {
       playersList.splice(playerIndex, 1);
     }
@@ -234,27 +253,30 @@ newPlayer.addEventListener("submit", function (event) {
 });
 
 function handleAddPlayerClick() {
-  let positionContainer = this.closest('.position-btn');
+  let positionContainer = this.closest(".position-btn");
   let position = positionContainer.textContent.trim();
 
   let positionClasses = Array.from(positionContainer.classList)
-    .filter(cls => cls.startsWith('position-'))
-    .map(cls => cls.replace('position-', ''));
+    .filter((cls) => cls.startsWith("position-"))
+    .map((cls) => cls.replace("position-", ""));
 
   modalList.style.display = "flex";
 
-  let filteredPlayers = playersList.filter(player => 
-    positionClasses.includes(player.position) && 
-    !startingPlayers[player.position].some(p => p.id === player.id)
+  let filteredPlayers = playersList.filter(
+    (player) =>
+      positionClasses.includes(player.position) &&
+      !startingPlayers[player.position].some((p) => p.id === player.id)
   );
 
   substitutePlayersContainer.innerHTML = "";
   if (filteredPlayers.length === 0) {
-    substitutePlayersContainer.innerHTML = "<p class='text-gray-500'>No players available for this position.</p>";
+    substitutePlayersContainer.innerHTML =
+      "<p class='text-gray-500'>No players available for this position.</p>";
   } else {
-    filteredPlayers.forEach(player => {
+    filteredPlayers.forEach((player) => {
       let playerItem = document.createElement("div");
-      playerItem.className = "flex justify-between items-center p-2 bg-gray-100 rounded-lg shadow-sm";
+      playerItem.className =
+        "flex justify-between items-center p-2 bg-gray-100 rounded-lg shadow-sm";
       playerItem.innerHTML = `
         <div class="flex items-center gap-2">
           <img src="pics/anonym-removebg-preview.png" class="object-contain" height="40" width="40">
@@ -273,35 +295,40 @@ function handleAddPlayerClick() {
   }
 }
 
-document.querySelectorAll(".btn-add").forEach(button => {
-  button.addEventListener('click', handleAddPlayerClick);
+document.querySelectorAll(".btn-add").forEach((button) => {
+  button.addEventListener("click", handleAddPlayerClick);
 });
 
 substitutePlayersContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("addPlayerButton")) {
-    const playerId = parseInt(event.target.getAttribute('data-player-id'));
-    const selectedPlayer = playersList.find(player => player.id === playerId);
+    const playerId = parseInt(event.target.getAttribute("data-player-id"));
+    const selectedPlayer = playersList.find((player) => player.id === playerId);
 
     if (selectedPlayer) {
-      const positionContainers = document.querySelectorAll(`.position-${selectedPlayer.position}`);
-      
-      const emptyPositionContainer = Array.from(positionContainers).find(container => 
-        !container.querySelector('.player-card')
+      const positionContainers = document.querySelectorAll(
+        `.position-${selectedPlayer.position}`
+      );
+
+      const emptyPositionContainer = Array.from(positionContainers).find(
+        (container) => !container.querySelector(".player-card")
       );
 
       if (emptyPositionContainer) {
-        emptyPositionContainer.innerHTML = '';
-        
+        emptyPositionContainer.innerHTML = "";
+
         emptyPositionContainer.appendChild(selectedPlayer.cardElement);
-        
-        const removeBtn = selectedPlayer.cardElement.querySelector('.remove-player-btn');
-        removeBtn.classList.remove('hidden');
+
+        const removeBtn =
+          selectedPlayer.cardElement.querySelector(".remove-player-btn");
+        removeBtn.classList.remove("hidden");
 
         startingPlayers[selectedPlayer.position].push(selectedPlayer);
 
         modalList.style.display = "none";
       } else {
-        alert(`No empty ${selectedPlayer.position} position available. Remove a player first.`);
+        alert(
+          `No empty ${selectedPlayer.position} position available. Remove a player first.`
+        );
       }
     }
   }
