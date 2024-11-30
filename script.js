@@ -12,12 +12,15 @@ let substitutePlayersContainer = document.getElementById("substitutePlayers");
 
 let playersList = [];
 let startingPlayers = {
-    'ST': null,
-    'CM': null,
-    'LW': null,
-    'RW': null,
-    'CB': null,
-    'GK': null
+    'ST': [],
+    'CM': [],
+    'CDM': [],
+    'LW': [],
+    'RW': [],
+    'RB': [],
+    'LB': [],
+    'CB': [],
+    'GK': []
 };
 
 addPlayer.onclick = function () {
@@ -116,7 +119,7 @@ newPlayer.addEventListener("submit", function (event) {
   };
 
   let playerCard = document.createElement("div");
-  playerCard.classList.add("p-2", "flex", "justify-center", "space-x-4");
+  playerCard.classList.add("player-card", "relative", "w-full", "h-full");
 
   playerCard.innerHTML = `
     <div class="relative flex justify-center items-center text-black">
@@ -162,6 +165,7 @@ newPlayer.addEventListener("submit", function (event) {
             </div>
         </div>
     </div>
+    <button class="remove-player-btn absolute top-0 right-0 m-1 bg-red-500 text-white px-2 py-1 rounded hidden">Remove</button>
     `;
   
   playerModal.classList.add("hidden");
@@ -189,75 +193,116 @@ newPlayer.addEventListener("submit", function (event) {
   playerModal.classList.add("hidden");
   newPlayer.reset();
   Substitutes.appendChild(playerCard);
-});
 
-document.querySelectorAll(".btn-add").forEach(button => {
-  button.addEventListener("click", function () {
-    let position = button.closest(".position-btn").id;
-    modalList.style.display = "flex";
+  const removePlayerBtn = playerCard.querySelector('.remove-player-btn');
+  removePlayerBtn.addEventListener('click', () => {
+    Object.keys(startingPlayers).forEach(position => {
+      const index = startingPlayers[position].findIndex(p => p.id === playerData.id);
+      if (index !== -1) {
+        startingPlayers[position].splice(index, 1);
+        
+        const positionContainers = document.querySelectorAll(`.position-${position}`);
+        positionContainers.forEach(container => {
+          if (container.contains(playerCard)) {
+            container.innerHTML = `
+              <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain" height="150" width="100" alt="">
+              <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                <button class="btn-add bg-black rounded-full w-8 h-8 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </button>
+                ${position}
+              </div>
+            `;
+            
+            const btnAdd = container.querySelector('.btn-add');
+            btnAdd.addEventListener('click', handleAddPlayerClick);
+          }
+        });
+      }
+    });
 
-    let filteredPlayers = playersList.filter(player => player.position === position);
-
-    substitutePlayersContainer.innerHTML = "";
-    if (filteredPlayers.length === 0) {
-      substitutePlayersContainer.innerHTML = "<p class='text-gray-500'>No players available for this position.</p>";
-    } else {
-      filteredPlayers.forEach(player => {
-        let playerItem = document.createElement("div");
-        playerItem.className = "flex justify-between items-center p-2 bg-gray-100 rounded-lg shadow-sm";
-        playerItem.innerHTML = `
-          <div class="flex items-center gap-2">
-            <img src="pics/anonym-removebg-preview.png" class="object-contain" height="40" width="40">
-            <div>
-              <span class="text-gray-700">${player.player} (OVR: ${player.rating})</span>
-              <div class="text-gray-700">PAC: ${player.stats.pace}  ||  SHO: ${player.stats.shooting}  ||  PAS: ${player.stats.passing}  ||  DRI: ${player.stats.dribbling}  ||  DEF: ${player.stats.deffending}  ||  PHY: ${player.stats.physical}</div>
-            </div>
-          </div>
-          <button class="addPlayerButton bg-[#333333] hover:bg-[#bc953d] text-[#bc953d] hover:text-[#333333] px-3 py-1 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105" 
-                  data-player-id="${player.id}">
-            Add
-          </button>
-        `;
-        substitutePlayersContainer.appendChild(playerItem);
-      });
+    Substitutes.removeChild(playerCard);
+    
+    const playerIndex = playersList.findIndex(p => p.id === playerData.id);
+    if (playerIndex !== -1) {
+      playersList.splice(playerIndex, 1);
     }
   });
 });
 
+function handleAddPlayerClick() {
+  let positionContainer = this.closest('.position-btn');
+  let position = positionContainer.textContent.trim();
+
+  let positionClasses = Array.from(positionContainer.classList)
+    .filter(cls => cls.startsWith('position-'))
+    .map(cls => cls.replace('position-', ''));
+
+  modalList.style.display = "flex";
+
+  let filteredPlayers = playersList.filter(player => 
+    positionClasses.includes(player.position) && 
+    !startingPlayers[player.position].some(p => p.id === player.id)
+  );
+
+  substitutePlayersContainer.innerHTML = "";
+  if (filteredPlayers.length === 0) {
+    substitutePlayersContainer.innerHTML = "<p class='text-gray-500'>No players available for this position.</p>";
+  } else {
+    filteredPlayers.forEach(player => {
+      let playerItem = document.createElement("div");
+      playerItem.className = "flex justify-between items-center p-2 bg-gray-100 rounded-lg shadow-sm";
+      playerItem.innerHTML = `
+        <div class="flex items-center gap-2">
+          <img src="pics/anonym-removebg-preview.png" class="object-contain" height="40" width="40">
+          <div>
+            <span class="text-gray-700">${player.player} (OVR: ${player.rating})</span>
+            <div class="text-gray-700">PAC: ${player.stats.pace}  |  SHO: ${player.stats.shooting}  |  PAS: ${player.stats.passing}  |  DRI: ${player.stats.dribbling}  |  DEF: ${player.stats.deffending}  |  PHY: ${player.stats.physical}</div>
+          </div>
+        </div>
+        <button class="addPlayerButton bg-[#333333] hover:bg-[#bc953d] text-[#bc953d] hover:text-[#333333] px-3 py-1 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105" 
+                data-player-id="${player.id}">
+          Add
+        </button>
+      `;
+      substitutePlayersContainer.appendChild(playerItem);
+    });
+  }
+}
+
+document.querySelectorAll(".btn-add").forEach(button => {
+  button.addEventListener('click', handleAddPlayerClick);
+});
+
 substitutePlayersContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("addPlayerButton")) {
-    // Find the player in playersList
     const playerId = parseInt(event.target.getAttribute('data-player-id'));
     const selectedPlayer = playersList.find(player => player.id === playerId);
 
     if (selectedPlayer) {
-      // Get the position container in the starting 11
-      const positionContainer = document.getElementById(selectedPlayer.position);
+      const positionContainers = document.querySelectorAll(`.position-${selectedPlayer.position}`);
+      
+      const emptyPositionContainer = Array.from(positionContainers).find(container => 
+        !container.querySelector('.player-card')
+      );
 
-      // Check if the position is already filled
-      const existingPlayerInPosition = startingPlayers[selectedPlayer.position];
-      if (existingPlayerInPosition) {
-        // If position is filled, swap back to substitutes
-        Substitutes.appendChild(existingPlayerInPosition.cardElement);
+      if (emptyPositionContainer) {
+        emptyPositionContainer.innerHTML = '';
+        
+        emptyPositionContainer.appendChild(selectedPlayer.cardElement);
+        
+        const removeBtn = selectedPlayer.cardElement.querySelector('.remove-player-btn');
+        removeBtn.classList.remove('hidden');
+
+        startingPlayers[selectedPlayer.position].push(selectedPlayer);
+
+        modalList.style.display = "none";
+      } else {
+        alert(`No empty ${selectedPlayer.position} position available. Remove a player first.`);
       }
-
-      // Move the selected player to the position container
-      positionContainer.innerHTML = ''; // Clear any existing player
-      positionContainer.appendChild(selectedPlayer.cardElement);
-
-      // Update the startingPlayers object
-      startingPlayers[selectedPlayer.position] = selectedPlayer;
-
-      // Remove the player from the substitutes list
-      const playerIndex = playersList.findIndex(player => player.id === playerId);
-      if (playerIndex > -1) {
-        // You might want to modify this logic to keep the player in playersList 
-        // but mark it as in starting 11
-        // playersList.splice(playerIndex, 1);
-      }
-
-      // Close the modal
-      modalList.style.display = "none";
     }
   }
 });
