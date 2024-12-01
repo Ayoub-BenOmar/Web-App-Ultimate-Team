@@ -27,10 +27,9 @@ let startingPlayers = {
 
 document.addEventListener("DOMContentLoaded", () => {
   burgerMenu.addEventListener("click", () => {
-      navLinks.classList.toggle("hidden");
+    navLinks.classList.toggle("hidden");
   });
 });
-
 
 addPlayer.onclick = function () {
   playerModal.classList.remove("hidden");
@@ -138,48 +137,70 @@ newPlayer.addEventListener("submit", function (event) {
 
   playerCard.innerHTML = `
     <div class="relative flex justify-center items-center text-black">
-        <img src="${cards[cardType]}" class="object-contain" height="170" width="120" alt="">
-        <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-            <img src="pics/anonym-removebg-preview.png" alt="Left ST" class="object-contain mb-6" height="60" width="60">
-            <div class="absolute left-[17%] top-[15%] text-center text-black">
-                <div class="font-bold text-xs">${overAllRating}</div>
-                <div class="font-semibold text-[0.5rem]">${playerPosition.value}</div>
-            </div>
-            <div class="absolute top-[64%] text-center gap-1">
-                <div class="font-bold text-[0.5rem]">${playerName}</div>
-                <div class="flex font-semibold text-[0.4rem] gap-1 ">
-                    <div class="flex flex-col">
-                        <span>PAC</span>
-                        <span>${playerPace}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>SHO</span>
-                        <span>${playerShooting}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>PAS</span>
-                        <span>${playerPassing}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>DRI</span>
-                        <span>${playerDribbling}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>DEF</span>
-                        <span>${playerDeffending}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>PHY</span>
-                        <span>${playerPhysical}</span>
-                    </div>
+    <!-- Player card image -->
+    <img 
+        src="${cards[cardType]}" 
+        class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" 
+        alt="Player Card"
+    >
+    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+        <img 
+            src="pics/anonym-removebg-preview.png" 
+            alt="Player Portrait" 
+            class="object-contain sm:mb-6 mb-4 sm:h-[60px] sm:w-[60px] h-[40px] w-[40px]"
+        >
+        <div class="absolute left-[22%] top-[15%] text-center text-black">
+            <div class="font-bold sm:text-xs text-[0.5rem]">${overAllRating}</div>
+            <div class="font-semibold sm:text-[0.5rem] text-[0.3rem]">${playerPosition.value}</div>
+        </div>
+        <div class="absolute top-[64%] text-center gap-1">
+            <div class="font-bold sm:text-[0.5rem] text-[0.3rem]">${playerName}</div>
+            <div class="flex font-bold sm:text-[0.3rem] text-[0.2rem] gap-0.5 sm:gap-1 ">
+                <div class="flex flex-col">
+                    <span>PAC</span>
+                    <span>${playerPace}</span>
                 </div>
-                <div class="absolute flex gap-1 left-[38%] items-center mt-1">
-                    <div ><img src="${country[playerCountry]}" class="object-contain" width="10" height="10" alt=""></div>
-                    <div><img src="${club[playerClub]}" class="object-contain" width="10" height="10" alt=""></div>
+                <div class="flex flex-col">
+                    <span>SHO</span>
+                    <span>${playerShooting}</span>
+                </div>
+                <div class="flex flex-col">
+                    <span>PAS</span>
+                    <span>${playerPassing}</span>
+                </div>
+                <div class="flex flex-col">
+                    <span>DRI</span>
+                    <span>${playerDribbling}</span>
+                </div>
+                <div class="flex flex-col">
+                    <span>DEF</span>
+                    <span>${playerDeffending}</span>
+                </div>
+                <div class="flex flex-col">
+                    <span>PHY</span>
+                    <span>${playerPhysical}</span>
+                </div>
+            </div>
+            <div class="absolute flex gap-1 left-[38%] items-center sm:mt-1 mt-0.5">
+                <div>
+                    <img 
+                        src="${country[playerCountry]}" 
+                        class="object-contain sm:w-[10px] sm:h-[10px] w-[8px] h-[8px]" 
+                        alt="Country Flag"
+                    >
+                </div>
+                <div>
+                    <img 
+                        src="${club[playerClub]}" 
+                        class="object-contain sm:w-[10px] sm:h-[10px] w-[8px] h-[8px]" 
+                        alt="Club Badge"
+                    >
                 </div>
             </div>
         </div>
     </div>
+</div>
+
     <button class="remove-player-btn absolute top-0 right-0 m-1 bg-red-500 text-white px-2 py-1 rounded hidden">Remove</button>
     `;
 
