@@ -71,19 +71,42 @@ newPlayer.addEventListener("submit", function (event) {
   let playerDeffending = parseInt(document.getElementById("def").value);
   let playerPhysical = parseInt(document.getElementById("phy").value);
 
+  let playerDiving = parseInt(document.getElementById("div").value);
+  let playerHandling = parseInt(document.getElementById("han").value);
+  let playerKicking = parseInt(document.getElementById("kic").value);
+  let playerReflex = parseInt(document.getElementById("ref").value);
+  let playerSpeed = parseInt(document.getElementById("spd").value);
+  let playerPositioning = parseInt(document.getElementById("pos").value);
+
   if (!playerName || !playerPosition.value || !playerClub || !playerCountry) {
     alert("Please fill all the player informations.");
     return;
   }
 
-  let statsValidation = [
-    { name: "pace", value: playerPace },
-    { name: "shooting", value: playerShooting },
-    { name: "passing", value: playerPassing },
-    { name: "dribbling", value: playerDribbling },
-    { name: "deffending", value: playerDeffending },
-    { name: "physical", value: playerPhysical },
+  let statsValidation;
+
+  if (playerPosition.value === "GK") {
+     statsValidation = [
+    { name: "diving", value: playerDiving },
+    { name: "handling", value: playerHandling },
+    { name: "kicking", value: playerKicking },
+    { name: "reflex", value: playerReflex },
+    { name: "speed", value: playerSpeed },
+    { name: "positioning", value: playerPositioning },
   ];
+
+  } else {
+     statsValidation = [
+      { name: "pace", value: playerPace },
+      { name: "shooting", value: playerShooting },
+      { name: "passing", value: playerPassing },
+      { name: "dribbling", value: playerDribbling },
+      { name: "deffending", value: playerDeffending },
+      { name: "physical", value: playerPhysical },
+    ];
+  }
+  
+
 
   for (let stat of statsValidation) {
     if (isNaN(stat.value) || stat.value < 1 || stat.value > 99) {
@@ -92,16 +115,27 @@ newPlayer.addEventListener("submit", function (event) {
     }
   }
 
-  let overAllRating = Math.round(
-    (playerPace +
-      playerShooting +
-      playerPassing +
-      playerDribbling +
-      playerDeffending +
-      playerPhysical) /
-      6
-  );
-
+  let overAllRating;
+  if (playerPosition.value === "GK") {
+    overAllRating = Math.round(
+      (playerDiving +
+        playerHandling +
+        playerKicking +
+        playerReflex +
+        playerSpeed +
+        playerPositioning) / 6
+    );
+  } else {
+    overAllRating = Math.round(
+      (playerPace +
+        playerShooting +
+        playerPassing +
+        playerDribbling +
+        playerDeffending +
+        playerPhysical) / 6
+    );
+  }
+  
   let country = {
     br: "https://cdn.sofifa.net/flags/br.png",
     fr: "https://cdn.sofifa.net/flags/fr.png",
@@ -135,7 +169,8 @@ newPlayer.addEventListener("submit", function (event) {
   let playerCard = document.createElement("div");
   playerCard.classList.add("player-card", "relative", "w-full", "h-full");
 
-  playerCard.innerHTML = `
+  if (playerPosition.value === "GK") {
+    playerCard.innerHTML = `
     <div class="relative flex justify-center items-center text-black">
     <img 
         src="${cards[cardType]}" 
@@ -152,33 +187,15 @@ newPlayer.addEventListener("submit", function (event) {
             <div class="font-bold sm:text-xs text-[0.5rem]">${overAllRating}</div>
             <div class="font-semibold sm:text-[0.5rem] text-[0.3rem]">${playerPosition.value}</div>
         </div>
-        <div class="absolute top-[64%] text-center gap-1">
+        <div class="group absolute top-[64%] text-center gap-1">
             <div class="font-bold sm:text-[0.5rem] text-[0.3rem]">${playerName}</div>
-            <div class="flex font-bold sm:text-[0.3rem] text-[0.2rem] gap-0.5 sm:gap-1 ">
-                <div class="flex flex-col">
-                    <span>PAC</span>
-                    <span>${playerPace}</span>
-                </div>
-                <div class="flex flex-col">
-                    <span>SHO</span>
-                    <span>${playerShooting}</span>
-                </div>
-                <div class="flex flex-col">
-                    <span>PAS</span>
-                    <span>${playerPassing}</span>
-                </div>
-                <div class="flex flex-col">
-                    <span>DRI</span>
-                    <span>${playerDribbling}</span>
-                </div>
-                <div class="flex flex-col">
-                    <span>DEF</span>
-                    <span>${playerDeffending}</span>
-                </div>
-                <div class="flex flex-col">
-                    <span>PHY</span>
-                    <span>${playerPhysical}</span>
-                </div>
+            <div class="grid grid-cols-6 gap-1 text-center font-bold sm:text-[0.3rem] text-[0.2rem]">
+              <div>DIV<br>${playerDiving}</div>
+              <div>HAN<br>${playerHandling}</div>
+              <div>KIC<br>${playerKicking}</div>
+              <div>REF<br>${playerReflex}</div>
+              <div>SPD<br>${playerSpeed}</div>
+              <div>POS<br>${playerPositioning}</div>
             </div>
             <div class="absolute flex gap-1 left-[38%] items-center sm:mt-1 mt-0.5">
                 <div>
@@ -212,10 +229,92 @@ newPlayer.addEventListener("submit", function (event) {
     </button>
 
     `;
+  }else{
+    playerCard.innerHTML = `
+    <div class="relative flex justify-center items-center text-black">
+    <img 
+        src="${cards[cardType]}" 
+        class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" 
+        alt="Player Card"
+    >
+    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+        <img 
+            src="pics/anonym-removebg-preview.png" 
+            alt="Player Portrait" 
+            class="object-contain sm:mb-6 mb-4 sm:h-[60px] sm:w-[60px] h-[40px] w-[40px]"
+        >
+        <div class="absolute left-[25%] top-[15%] text-center text-black">
+            <div class="font-bold sm:text-xs text-[0.5rem]">${overAllRating}</div>
+            <div class="font-semibold sm:text-[0.5rem] text-[0.3rem]">${playerPosition.value}</div>
+        </div>
+        <div class="group absolute top-[64%] text-center gap-1">
+            <div class="font-bold sm:text-[0.5rem] text-[0.3rem]">${playerName}</div>
+            <div class="grid grid-cols-6 gap-1 text-center font-bold sm:text-[0.3rem] text-[0.2rem]">
+              <div>PAC<br>${playerPace}</div>
+              <div>SHO<br>${playerShooting}</div>
+              <div>PAS<br>${playerPassing}</div>
+              <div>DRI<br>${playerDribbling}</div>
+              <div>DEF<br>${playerDeffending}</div>
+              <div>PHY<br>${playerPhysical}</div>
+            </div>
+            <div class="absolute flex gap-1 left-[38%] items-center sm:mt-1 mt-0.5">
+                <div>
+                    <img 
+                        src="${country[playerCountry]}" 
+                        class="object-contain sm:w-[8px] sm:h-[8px] w-[8px] h-[8px]" 
+                        alt="Country Flag"
+                    >
+                </div>
+                <div>
+                    <img 
+                        src="${club[playerClub]}" 
+                        class="object-contain sm:w-[8px] sm:h-[8px] w-[8px] h-[8px]" 
+                        alt="Club Badge"
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <button class="remove-player-btn absolute top-0 right-0 m-1 text-white px-2 py-1 rounded hidden">
+    <svg
+        class="w-6 h-6 text-gray-800"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"             
+        >
+        <path d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+        </svg>
+    </button>
 
+    `;
+  }
+  
   playerModal.classList.add("hidden");
 
-  let playerData = {
+  let playerData
+  if (playerPosition.value === "GK") {
+    playerData = {
+      id: Date.now(),
+      player: playerName,
+      position: playerPosition.value,
+      club: playerClub,
+      country: playerCountry,
+      rating: overAllRating,
+      stats: {
+        diving: playerDiving,
+        handling: playerHandling,
+        kicking: playerKicking,
+        reflex: playerReflex,
+        speed: playerSpeed,
+        positioning: playerPositioning,
+      },
+      cardType: cardType,
+      cardElement: playerCard,
+    };
+  } else {
+     playerData = {
     id: Date.now(),
     player: playerName,
     position: playerPosition.value,
@@ -233,100 +332,120 @@ newPlayer.addEventListener("submit", function (event) {
     cardType: cardType,
     cardElement: playerCard,
   };
+  }
+ 
 
   playersList.push(playerData);
   playerModal.classList.add("hidden");
   newPlayer.reset();
   Substitutes.appendChild(playerCard);
 
-  const removePlayerBtn = playerCard.querySelector(".remove-player-btn");
-  removePlayerBtn.addEventListener("click", () => {
-    Object.keys(startingPlayers).forEach((position) => {
-      const index = startingPlayers[position].findIndex(
-        (p) => p.id === playerData.id
-      );
-      if (index !== -1) {
-        startingPlayers[position].splice(index, 1);
+  // const removePlayerBtn = playerCard.querySelector(".remove-player-btn");
+  // removePlayerBtn.addEventListener("click", () => {
+  //   Object.keys(startingPlayers).forEach((position) => {
+  //     const index = startingPlayers[position].findIndex(
+  //       (p) => p.id === playerData.id
+  //     );
+  //     if (index !== -1) {
+  //       startingPlayers[position].splice(index, 1);
 
-        const positionContainers = document.querySelectorAll(
-          `.position-${position}`
-        );
-        positionContainers.forEach((container) => {
-          if (container.contains(playerCard)) {
-            container.innerHTML = `
-              <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" alt="">
-              <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                <button class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                  </svg>
-                </button>
-                ${position}
-              </div>
-            `;
+  //       const positionContainers = document.querySelectorAll(
+  //         `.position-${position}`
+  //       );
+  //       positionContainers.forEach((container) => {
+  //         if (container.contains(playerCard)) {
+  //           container.innerHTML = `
+  //             <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" alt="">
+  //             <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+  //               <button class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
+  //                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  //                   <line x1="12" y1="5" x2="12" y2="19"></line>
+  //                   <line x1="5" y1="12" x2="19" y2="12"></line>
+  //                 </svg>
+  //               </button>
+  //               ${position}
+  //             </div>
+  //           `;
 
-            const btnAdd = container.querySelector(".btn-add");
-            btnAdd.addEventListener("click", handleAddPlayerClick);
-          }
-        });
-      }
-    });
+  //           const btnAdd = container.querySelector(".btn-add");
+  //           btnAdd.addEventListener("click", handleAddPlayerClick);
+  //         }
+  //       });
+  //     }
+  //   });
 
-    Substitutes.removeChild(playerCard);
+  //   Substitutes.removeChild(playerCard);
 
-    const playerIndex = playersList.findIndex((p) => p.id === playerData.id);
-    if (playerIndex !== -1) {
-      playersList.splice(playerIndex, 1);
-    }
-  });
+  //   const playerIndex = playersList.findIndex((p) => p.id === playerData.id);
+  //   if (playerIndex !== -1) {
+  //     playersList.splice(playerIndex, 1);
+  //   }
+  // });
 });
 
-function handleAddPlayerClick() {
-  let positionContainer = this.closest(".position-btn");
-  let position = positionContainer.textContent.trim();
+// ************************************************************************************************
 
-  let positionClasses = Array.from(positionContainer.classList)
-    .filter((cls) => cls.startsWith("position-"))
-    .map((cls) => cls.replace("position-", ""));
 
-  modalList.style.display = "flex";
+// function handleAddPlayerClick() {
+//   let positionContainer = this.closest(".position-btn");
+//   let position = positionContainer.textContent.trim();
 
-  let filteredPlayers = playersList.filter(
-    (player) =>
-      positionClasses.includes(player.position) &&
-      !startingPlayers[player.position].some((p) => p.id === player.id)
-  );
+//   let positionClasses = Array.from(positionContainer.classList)
+//     .filter((cls) => cls.startsWith("position-"))
+//     .map((cls) => cls.replace("position-", ""));
 
-  substitutePlayersContainer.innerHTML = "";
-  if (filteredPlayers.length === 0) {
-    substitutePlayersContainer.innerHTML =
-      "<p class='text-gray-500'>No players available for this position.</p>";
-  } else {
-    filteredPlayers.forEach((player) => {
-      let playerItem = document.createElement("div");
-      playerItem.className =
-        "flex justify-between items-center p-2 bg-gray-100 rounded-lg shadow-sm";
-      playerItem.innerHTML = `
-        <div class="flex items-center gap-2">
-          <img src="pics/anonym-removebg-preview.png" class="object-contain" height="40" width="40">
-          <div>
-            <span class="text-gray-700">${player.player} (OVR: ${player.rating})</span>
-            <div class="text-gray-700">PAC: ${player.stats.pace}  |  SHO: ${player.stats.shooting}  |  PAS: ${player.stats.passing}  |  DRI: ${player.stats.dribbling}  |  DEF: ${player.stats.deffending}  |  PHY: ${player.stats.physical}</div>
-          </div>
-        </div>
-        <button class="addPlayerButton bg-[#333333] hover:bg-[#bc953d] text-[#bc953d] hover:text-[#333333] px-3 py-1 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105" 
-                data-player-id="${player.id}">
-          Add
-        </button>
-      `;
-      substitutePlayersContainer.appendChild(playerItem);
-    });
-  }
-}
+//   modalList.style.display = "flex";
 
+//   let filteredPlayers = playersList.filter(
+//     (player) =>
+//       positionClasses.includes(player.position) &&
+//       !startingPlayers[player.position].some((p) => p.id === player.id)
+//   );
+
+//   substitutePlayersContainer.innerHTML = "";
+//   if (filteredPlayers.length === 0) {
+//     substitutePlayersContainer.innerHTML =
+//       "<p class='text-gray-500'>No players available for this position.</p>";
+//   } else {
+//     filteredPlayers.forEach((player) => {
+//       let playerItem = document.createElement("div");
+//       playerItem.className =
+//         "flex justify-between items-center p-2 bg-gray-100 rounded-lg shadow-sm";
+//       playerItem.innerHTML = `
+//         <div class="flex items-center gap-2">
+//           <img src="pics/anonym-removebg-preview.png" class="object-contain" height="40" width="40">
+//           <div>
+//             <span class="text-gray-700">${player.player} (OVR: ${player.rating})</span>
+//             <div class="text-gray-700">PAC: ${player.stats.pace}  |  SHO: ${player.stats.shooting}  |  PAS: ${player.stats.passing}  |  DRI: ${player.stats.dribbling}  |  DEF: ${player.stats.deffending}  |  PHY: ${player.stats.physical}</div>
+//           </div>
+//         </div>
+//         <button class="addPlayerButton bg-[#333333] hover:bg-[#bc953d] text-[#bc953d] hover:text-[#333333] px-3 py-1 font-bold rounded-lg transition duration-300 ease-in-out transform hover:scale-105" 
+//                 data-player-id="${player.id}">
+//           Add
+//         </button>
+//       `;
+//       substitutePlayersContainer.appendChild(playerItem);
+//     });
+//   }
+// }
+const positionObjet= {
+  ST: "ST",
+  SS: "ST",
+  CAM: "CM",
+  LM: "CM",
+  RM: "CM",
+  CDM: "CDM",
+  RB: "RB",
+  LB: "LB",
+  RCB: "CB",
+  LCB: "CB",
+  GK: "GK"
+};
 document.querySelectorAll(".btn-add").forEach((button) => {
-  button.addEventListener("click", handleAddPlayerClick);
+  // button.addEventListener("click", handleAddPlayerClick);
+  button.addEventListener('click',()=>{
+
+  })
 });
 
 substitutePlayersContainer.addEventListener("click", (event) => {
