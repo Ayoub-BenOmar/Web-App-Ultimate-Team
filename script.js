@@ -137,7 +137,6 @@ newPlayer.addEventListener("submit", function (event) {
 
   playerCard.innerHTML = `
     <div class="relative flex justify-center items-center text-black">
-    <!-- Player card image -->
     <img 
         src="${cards[cardType]}" 
         class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" 
@@ -149,7 +148,7 @@ newPlayer.addEventListener("submit", function (event) {
             alt="Player Portrait" 
             class="object-contain sm:mb-6 mb-4 sm:h-[60px] sm:w-[60px] h-[40px] w-[40px]"
         >
-        <div class="absolute left-[22%] top-[15%] text-center text-black">
+        <div class="absolute left-[25%] top-[15%] text-center text-black">
             <div class="font-bold sm:text-xs text-[0.5rem]">${overAllRating}</div>
             <div class="font-semibold sm:text-[0.5rem] text-[0.3rem]">${playerPosition.value}</div>
         </div>
@@ -185,14 +184,14 @@ newPlayer.addEventListener("submit", function (event) {
                 <div>
                     <img 
                         src="${country[playerCountry]}" 
-                        class="object-contain sm:w-[10px] sm:h-[10px] w-[8px] h-[8px]" 
+                        class="object-contain sm:w-[8px] sm:h-[8px] w-[8px] h-[8px]" 
                         alt="Country Flag"
                     >
                 </div>
                 <div>
                     <img 
                         src="${club[playerClub]}" 
-                        class="object-contain sm:w-[10px] sm:h-[10px] w-[8px] h-[8px]" 
+                        class="object-contain sm:w-[8px] sm:h-[8px] w-[8px] h-[8px]" 
                         alt="Club Badge"
                     >
                 </div>
@@ -200,8 +199,18 @@ newPlayer.addEventListener("submit", function (event) {
         </div>
     </div>
 </div>
+    <button class="remove-player-btn absolute top-0 right-0 m-1 text-white px-2 py-1 rounded hidden">
+    <svg
+        class="w-6 h-6 text-gray-800"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none" viewBox="0 0 24 24"
+        stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"             
+        >
+        <path d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+        </svg>
+    </button>
 
-    <button class="remove-player-btn absolute top-0 right-0 m-1 bg-red-500 text-white px-2 py-1 rounded hidden">Remove</button>
     `;
 
   playerModal.classList.add("hidden");
@@ -245,9 +254,9 @@ newPlayer.addEventListener("submit", function (event) {
         positionContainers.forEach((container) => {
           if (container.contains(playerCard)) {
             container.innerHTML = `
-              <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain" height="150" width="100" alt="">
+              <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" alt="">
               <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                <button class="btn-add bg-black rounded-full w-8 h-8 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
+                <button class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
                   <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
