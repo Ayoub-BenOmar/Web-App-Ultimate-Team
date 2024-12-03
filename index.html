@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Ultimate Team</title>
 </head>
-<body class="relative min-w-[320px] min-h-screen bg-[url('pics/bg-yellow.jpg')] bg-cover bg-top-70 bg-no-repeat backdrop-blur-sm">
-
+<body class="min-h-screen bg-[url('pics/bg-yellow.jpg')] bg-center bg-no-repeat backdrop-blur">
     <!-- navbar -->
     <nav class="bg-black border-gray-200">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -119,8 +118,6 @@
                                         <option value="LB">LB</option>
                                         <option value="CDM">CDM</option>
                                         <option value="CM">CM</option>
-                                        <option value="LW">LW</option>
-                                        <option value="RW">RW</option>
                                         <option value="ST">ST</option>
                                     </select>
                                     </div>
@@ -190,91 +187,132 @@
         </div>
     </div>
 
-    <section class="container mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-[75%,1fr]  gap-6">
-        <div class="bg-[#444444] rounded-lg shadow-xl relative h-fit py-6">
-            <div class="relative text-xs sm:text-base text-white">
-                <img src="pics/Pitch-removebg-preview.png" alt="Football Pitch" class="w-full h-[300px] lg:w-full lg:h-auto mt-4">
-
+    <section class="container mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-[65%,1fr]  gap-6">
+        <div class="bg-[#444444] rounded-lg shadow-xl h-fit py-6">
+            <div class="text-xs sm:text-sm md:text-base text-white bg-[url('pics/st.webp')] bg-cover bg-center bg-no-repeat min-h-[300px] sm:h-[500px] lg:h-[700px] w-full flex justify-center items-center flex-wrap py-4 sm:py-0">
+                <div class="flex flex-col justify-center items-center">
                 <!-- strikers -->
-                <div  class="position-ST position-RW position-LW position-btn absolute sm:top-[-5%] sm:left-[35%] top-[0%] left-[27%]">
-                    <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px] hover:scale-105 transition-transform duration-300 ease-in-out" alt="">
-                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                        <button id="ST" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        ST
+                <div class="grid grid-cols-2 gap-x-10 lg:gap-x-16 lg:mb-8">
+                    <div id="S1">
+                    <div class=" position-ST position-RW position-LW position-btn bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]" style="background-image: url('https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp');">
+                        <div class="w-full h-full flex flex-col items-center justify-center">
+                            <button id="ST" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                            ST
+                        </div>
                     </div>
-                </div>
-                <div  class=" position-ST position-RW position-LW position-btn absolute sm:top-[-5%] sm:left-[55%] top-[0%] left-[53%]">
-                    <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" alt="">
-                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                        <button id="SS" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        SS
                     </div>
-                </div>
 
+                    <div id="S2">
+                    <div  class=" position-ST position-RW position-LW position-btn bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]" style="background-image: url('https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp');">
+                        <div class="w-full h-full flex flex-col items-center justify-center">
+                            <button id="SS" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                            SS
+                        </div>
+                    </div>
+                    </div>
+                </div>
                 <!-- Midfielder -->
-                <div  class=" position-CM position-RW position-LW position-btn absolute sm:top-[12%] sm:left-[45%] top-[20%] left-[40%]">
-                    <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" alt="">
-                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                        <button id="CAM" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        CAM
+                <div class="grid grid-cols-4 gap-x-8 lg:gap-x-32 lg:mb-8">
+                    
+                    <div class="position-CM position-btn bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]" style="background-image: url('https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp');">
+                        <div class="w-full h-full flex flex-col items-center justify-center">
+                            <button id="LM" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                            LM
+                        </div>
                     </div>
-                </div>
-                <div  class=" position-CDM position-RW position-LW position-btn absolute sm:top-[42%] sm:left-[45%] top-[45%] left-[40%]">
-                    <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" alt="">
-                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                        <button id="CDM" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        CDM
-                    </div>
-                </div>
-                <div  class=" position-CM position-RW position-LW position-btn absolute sm:top-[22%] sm:left-[25%] top-[30%] left-[20%]">
-                    <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" alt="">
-                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                        <button id="LM" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        LM
-                    </div>
-                </div>
-                <div  class=" position-CM position-RW position-LW position-btn absolute sm:top-[22%] sm:left-[67%] top-[30%] left-[60%]">
-                    <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" alt="">
-                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                        <button id="RM" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        RM
-                    </div>
-                </div>
 
+                    <div  class=" position-CDM position-btn bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]" style="background-image: url('https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp');">
+                        <div class="w-full h-full flex flex-col items-center justify-center">
+                            <button id="CDM" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                            CDM
+                        </div>
+                    </div>
+
+                    <div  class=" position-CM position-btn bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]" style="background-image: url('https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp');">
+                        <div class="w-full h-full flex flex-col items-center justify-center">
+                            <button id="CM" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                            CM
+                        </div>
+                    </div>
+                   
+                    <div  class=" position-CM position-btn  bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]" style="background-image: url('https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp');">
+                        <div class="w-full h-full flex flex-col items-center justify-center">
+                            <button id="RM" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                            RM
+                        </div>
+                    </div>
+                </div>
                 <!-- defenders -->
-                <div  class=" position-RB position-RW position-LW position-btn absolute sm:top-[47%] sm:left-[81%] top-[50%] left-[75%]">
-                    <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" alt="">
-                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                <div class="grid grid-cols-4 gap-x-8 lg:gap-x-36">
+                    <div  class=" position-LB position-btn  bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]" style="background-image: url('https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp');">
+                        <div class="w-full h-full flex flex-col items-center justify-center">
+                            <button id="LB" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                            LB
+                        </div>
+                    </div>
+
+    
+                    <div  class=" position-CB position-btn bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]" style="background-image: url('https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp');">
+                        <div class="w-full h-full flex flex-col items-center justify-center">
+                            <button id="LCB" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                            LCB
+                        </div>
+                    </div>
+                    <div  class=" position-CB position-btn bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]" style="background-image: url('https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp');">
+                        <div class="w-full h-full flex flex-col items-center justify-center">
+                            <button id="RCB" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                            RCB
+                        </div>
+                    </div>
+                
+
+                <div  class=" position-RB position-btn bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]" style="background-image: url('https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp');">
+                    <div class="w-full h-full flex flex-col items-center justify-center">
                         <button id="RB" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -284,48 +322,10 @@
                         RB
                     </div>
                 </div>
-                <div  class=" position-LB position-RW position-LW position-btn absolute sm:top-[47%] sm:left-[10%] top-[50%] left-[5%]">
-                    <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" alt="">
-                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                        <button id="LB" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        LB
-                    </div>
-                </div>
-
-                <div  class=" position-CB position-RW position-LW position-btn absolute sm:top-[57%] sm:left-[30%] top-[60%] left-[25%]">
-                    <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" alt="">
-                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                        <button id="LCB" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        LCB
-                    </div>
-                </div>
-                <div  class=" position-CB position-RW position-LW position-btn absolute sm:top-[57%] sm:left-[62%] top-[60%] left-[55%]">
-                    <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" alt="">
-                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-                        <button id="RCB" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                            </svg>
-                        </button>
-                        RCB
-                    </div>
-                </div>
-
+            </div>
                 <!-- Goalkeeper -->
-                <div  class=" position-GK position-RW position-LW position-btn absolute sm:top-[72%] sm:left-[45%] top-[78%] left-[40%]">
-                    <img src="https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp" class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" alt="">
-                    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
+                <div  class=" position-GK pposition-btn bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]" style="background-image: url('https://pdf-service-static.s3.amazonaws.com/static/layout-images/cardstar/thumbnails/gold-totw-24.webp');">
+                    <div class="w-full h-full flex flex-col items-center justify-center">
                         <button id="GK" class="btn-add bg-black rounded-full sm:w-8 sm:h-8 w-4 h-4 flex items-center justify-center hover:shadow-[0_0_15px_#FFD700] transition-shadow duration-300 ease-in-out">
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -336,7 +336,7 @@
                     </div>
                 </div>
 
-                <!-- <div class="absolute" style="top: 10%; left: 50%; transform: translateX(-50%);">
+                <!-- <div class="" style="top: 10%; left: 50%; transform: translateX(-50%);">
                     <div class="p-1 flex items-center justify-center shadow-lg">
                         <img src="messi.png" alt="Goalkeeper" class="h-20 w-20 object-contain">
                     </div>
@@ -384,13 +384,13 @@
                         <img src="messi.png" alt="Right Attacking Midfielder" class="h-20 w-20 object-contain">
                     </div>
                 </div> -->
-
+                </div>
             </div>
         </div>
 
         <div class="bg-[#444444] rounded-lg p-4 shadow-xl h-fit">
             <h2 class="text-xl font-bold mb-4 text-center text-gray-400">Substitutes</h2>
-            <div id="Substitutes" class="grid lg:grid-cols-2 gap-4 grid-cols-3">
+            <div id="Substitutes" class="grid lg:grid-cols-3 gap-4 grid-cols-3">
                 <!-- <div class="bg-[#555555] rounded-lg p-2 flex justify-center space-x-4">
                     <img src="pics/messi.png" alt="" class="object-contain" height="100" width="100">
                 </div>

@@ -41,7 +41,7 @@ closeModal.onclick = function () {
 };
 
 cancelModal.onclick = function () {
-  modalList.style.display = "none";
+  modalList.classList.add('hidden')
 };
 
 playerPosition.addEventListener("change", (e) => {
@@ -167,56 +167,72 @@ newPlayer.addEventListener("submit", function (event) {
   };
 
   let playerCard = document.createElement("div");
-  playerCard.classList.add("player-card", "relative", "w-full", "h-full");
+  playerCard.classList.add("player-card", "w-full", "h-full");
 
   if (playerPosition.value === "GK") {
     playerCard.innerHTML = `
-    <div class="relative flex justify-center items-center text-black">
-    <img 
-        src="${cards[cardType]}" 
-        class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" 
-        alt="Player Card"
-    >
-    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-        <img 
-            src="pics/anonym-removebg-preview.png" 
-            alt="Player Portrait" 
-            class="object-contain sm:mb-6 mb-4 sm:h-[60px] sm:w-[60px] h-[40px] w-[40px]"
-        >
-        <div class="absolute left-[25%] top-[15%] text-center text-black">
-            <div class="font-bold sm:text-xs text-[0.5rem]">${overAllRating}</div>
-            <div class="font-semibold sm:text-[0.5rem] text-[0.3rem]">${playerPosition.value}</div>
-        </div>
-        <div class="group absolute top-[64%] text-center gap-1">
-            <div class="font-bold sm:text-[0.5rem] text-[0.3rem]">${playerName}</div>
-            <div class="grid grid-cols-6 gap-1 text-center font-bold sm:text-[0.3rem] text-[0.2rem]">
-              <div>DIV<br>${playerDiving}</div>
-              <div>HAN<br>${playerHandling}</div>
-              <div>KIC<br>${playerKicking}</div>
-              <div>REF<br>${playerReflex}</div>
-              <div>SPD<br>${playerSpeed}</div>
-              <div>POS<br>${playerPositioning}</div>
-            </div>
-            <div class="absolute flex gap-1 left-[38%] items-center sm:mt-1 mt-0.5">
-                <div>
-                    <img 
-                        src="${country[playerCountry]}" 
-                        class="object-contain sm:w-[8px] sm:h-[8px] w-[8px] h-[8px]" 
-                        alt="Country Flag"
-                    >
+       <div class="flex justify-center items-center text-black">
+      <div class="">
+        <div class="flex">
+          <div
+            class="bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]"
+            style="
+              background-image: url('${cards[cardType]}');
+            "
+          >
+            <div
+              class="w-full h-full flex flex-col gap-0.25 items-center justify-center mt-1.5 sm:mt-3"
+            >
+              <div class="flex">
+                <div class="text-center text-black sm:mb-6 mb-0">
+                  <div class="font-bold sm:text-xs text-[0.5rem]">${overAllRating}</div>
+                  <div class="font-semibold sm:text-[0.5rem] text-[0.3rem]">
+                  ${playerPosition.value}
+                  </div>
                 </div>
-                <div>
-                    <img 
-                        src="${club[playerClub]}" 
-                        class="object-contain sm:w-[8px] sm:h-[8px] w-[8px] h-[8px]" 
-                        alt="Club Badge"
-                    >
+                <img
+                  src="pics/anonym-removebg-preview.png"
+                  alt="Player Portrait"
+                  class="object-contain mt-2 sm:mt-1 flex sm:h-[70px] sm:w-[70px] h-[35px] w-[35px]"
+                />
+              </div>
+              <div class="text-center flex flex-col items-center pb-2 sm:pb-3">
+                <div class="font-bold sm:text-[0.5rem] text-[0.3rem]">
+                  ${playerName}
                 </div>
+                <div
+                  class="grid grid-cols-6 gap-0.5 lg:gap-1 text-center font-bold sm:text-[0.3rem] text-[0.15rem]"
+                >
+                  <div>DIV<br />${playerDiving}</div>
+                  <div>HAN<br />${playerHandling}</div>
+                  <div>KIC<br />${playerKicking}</div>
+                  <div>REF<br />${playerReflex}</div>
+                  <div>SPD<br />${playerSpeed}</div>
+                  <div>POS<br />${playerPositioning}</div>
+                </div>
+                <div class="flex gap-1 items-center sm:mt-1 mt-0.5">
+                  <div>
+                    <img
+                      src="${country[playerCountry]}"
+                      class="object-contain sm:w-[8px] sm:h-[8px] w-[6px] h-[6px]"
+                      alt="Country Flag"
+                    />
+                  </div>
+                  <div>
+                    <img
+                      src="${club[playerClub]}"
+                      class="object-contain sm:w-[8px] sm:h-[8px] w-[6px] h-[6px]"
+                      alt="Club Badge"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-    <button class="remove-player-btn absolute top-0 right-0 m-1 text-white px-2 py-1 rounded hidden">
+    <button class="remove-player-btn top-0 right-0 m-1 text-white px-2 py-1 rounded hidden">
     <svg
         class="w-6 h-6 text-gray-800"
         xmlns="http://www.w3.org/2000/svg"
@@ -231,52 +247,68 @@ newPlayer.addEventListener("submit", function (event) {
     `;
   }else{
     playerCard.innerHTML = `
-    <div class="relative flex justify-center items-center text-black">
-    <img 
-        src="${cards[cardType]}" 
-        class="object-contain sm:h-[150px] sm:w-[100px] h-[80px] w-[80px]" 
-        alt="Player Card"
-    >
-    <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-        <img 
-            src="pics/anonym-removebg-preview.png" 
-            alt="Player Portrait" 
-            class="object-contain sm:mb-6 mb-4 sm:h-[60px] sm:w-[60px] h-[40px] w-[40px]"
-        >
-        <div class="absolute left-[25%] top-[15%] text-center text-black">
-            <div class="font-bold sm:text-xs text-[0.5rem]">${overAllRating}</div>
-            <div class="font-semibold sm:text-[0.5rem] text-[0.3rem]">${playerPosition.value}</div>
-        </div>
-        <div class="group absolute top-[64%] text-center gap-1">
-            <div class="font-bold sm:text-[0.5rem] text-[0.3rem]">${playerName}</div>
-            <div class="grid grid-cols-6 gap-1 text-center font-bold sm:text-[0.3rem] text-[0.2rem]">
-              <div>PAC<br>${playerPace}</div>
-              <div>SHO<br>${playerShooting}</div>
-              <div>PAS<br>${playerPassing}</div>
-              <div>DRI<br>${playerDribbling}</div>
-              <div>DEF<br>${playerDeffending}</div>
-              <div>PHY<br>${playerPhysical}</div>
-            </div>
-            <div class="absolute flex gap-1 left-[38%] items-center sm:mt-1 mt-0.5">
-                <div>
-                    <img 
-                        src="${country[playerCountry]}" 
-                        class="object-contain sm:w-[8px] sm:h-[8px] w-[8px] h-[8px]" 
-                        alt="Country Flag"
-                    >
+    <div class=" flex justify-center items-center text-black">
+      <div class="">
+        <div class="flex">
+          <div
+            class="bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]"
+            style="
+              background-image: url('${cards[cardType]}');
+            "
+          >
+            <div
+              class="w-full h-full flex flex-col gap-0.25 items-center justify-center mt-1.5 sm:mt-3"
+            >
+              <div class="flex">
+                <div class="text-center text-black sm:mb-6 mb-0">
+                  <div class="font-bold sm:text-xs text-[0.5rem]">${overAllRating}</div>
+                  <div class="font-semibold sm:text-[0.5rem] text-[0.3rem]">
+                  ${playerPosition.value}
+                  </div>
                 </div>
-                <div>
-                    <img 
-                        src="${club[playerClub]}" 
-                        class="object-contain sm:w-[8px] sm:h-[8px] w-[8px] h-[8px]" 
-                        alt="Club Badge"
-                    >
+                <img
+                  src="pics/anonym-removebg-preview.png"
+                  alt="Player Portrait"
+                  class="object-contain mt-2 sm:mt-1 flex sm:h-[70px] sm:w-[70px] h-[35px] w-[35px]"
+                />
+              </div>
+              <div class="text-center flex flex-col items-center pb-2 sm:pb-3">
+                <div class="font-bold sm:text-[0.5rem] text-[0.3rem]">
+                  ${playerName}
                 </div>
+                <div
+                  class="grid grid-cols-6 gap-0.5 lg:gap-1 text-center font-bold sm:text-[0.3rem] text-[0.15rem]"
+                >
+                  <div>PAC<br />${playerPace}</div>
+                  <div>SHO<br />${playerShooting}</div>
+                  <div>PAS<br />${playerPassing}</div>
+                  <div>DRI<br />${playerDribbling}</div>
+                  <div>DEF<br />${playerDeffending}</div>
+                  <div>PHY<br />${playerPhysical}</div>
+                </div>
+                <div class="flex gap-1 items-center sm:mt-1 mt-0.5">
+                  <div>
+                    <img
+                      src="${country[playerCountry]}"
+                      class="object-contain sm:w-[8px] sm:h-[8px] w-[6px] h-[6px]"
+                      alt="Country Flag"
+                    />
+                  </div>
+                  <div>
+                    <img
+                      src="${club[playerClub]}"
+                      class="object-contain sm:w-[8px] sm:h-[8px] w-[6px] h-[6px]"
+                      alt="Club Badge"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-    <button class="remove-player-btn absolute top-0 right-0 m-1 text-white px-2 py-1 rounded hidden">
+    <button class="remove-player-btn top-0 right-0 m-1 text-white px-2 py-1 rounded hidden">
     <svg
         class="w-6 h-6 text-gray-800"
         xmlns="http://www.w3.org/2000/svg"
@@ -299,9 +331,11 @@ newPlayer.addEventListener("submit", function (event) {
       id: Date.now(),
       player: playerName,
       position: playerPosition.value,
-      club: playerClub,
-      country: playerCountry,
+      club: club[playerClub],
+      country: country[playerCountry],
       rating: overAllRating,
+      card: cards[cardType],
+      cardElement: playerCard,
       stats: {
         diving: playerDiving,
         handling: playerHandling,
@@ -310,17 +344,18 @@ newPlayer.addEventListener("submit", function (event) {
         speed: playerSpeed,
         positioning: playerPositioning,
       },
-      cardType: cardType,
-      cardElement: playerCard,
+      
     };
   } else {
      playerData = {
     id: Date.now(),
     player: playerName,
     position: playerPosition.value,
-    club: playerClub,
-    country: playerCountry,
+    club: club[playerClub],
+    country: country[playerCountry],
     rating: overAllRating,
+    card: cards[cardType],
+    cardElement: playerCard,
     stats: {
       pace: playerPace,
       shooting: playerShooting,
@@ -329,8 +364,7 @@ newPlayer.addEventListener("submit", function (event) {
       deffending: playerDeffending,
       physical: playerPhysical,
     },
-    cardType: cardType,
-    cardElement: playerCard,
+    
   };
   }
  
@@ -431,7 +465,7 @@ newPlayer.addEventListener("submit", function (event) {
 const positionObjet= {
   ST: "ST",
   SS: "ST",
-  CAM: "CM",
+  CM: "CM",
   LM: "CM",
   RM: "CM",
   CDM: "CDM",
@@ -441,44 +475,221 @@ const positionObjet= {
   LCB: "CB",
   GK: "GK"
 };
+let buttonId;
 document.querySelectorAll(".btn-add").forEach((button) => {
   // button.addEventListener("click", handleAddPlayerClick);
   button.addEventListener('click',()=>{
-
+    
+    if (positionObjet[button.id]) {
+      recuperePlayersPosition(button,positionObjet[button.id]);
+      buttonId=button.id;
+       console.log("************"+buttonId+"*************************")
+      
+       
+    }
   })
 });
+function recuperePlayersPosition(button,positionName){
+  console.log(positionName)
+  modalList.classList.remove('hidden')
+  let listeFiltred=playersList.filter(player=>player.position==positionName)
+  correctPlayer(listeFiltred)
+}
 
-substitutePlayersContainer.addEventListener("click", (event) => {
-  if (event.target.classList.contains("addPlayerButton")) {
-    const playerId = parseInt(event.target.getAttribute("data-player-id"));
-    const selectedPlayer = playersList.find((player) => player.id === playerId);
-
-    if (selectedPlayer) {
-      const positionContainers = document.querySelectorAll(
-        `.position-${selectedPlayer.position}`
-      );
-
-      const emptyPositionContainer = Array.from(positionContainers).find(
-        (container) => !container.querySelector(".player-card")
-      );
-
-      if (emptyPositionContainer) {
-        emptyPositionContainer.innerHTML = "";
-
-        emptyPositionContainer.appendChild(selectedPlayer.cardElement);
-
-        const removeBtn =
-          selectedPlayer.cardElement.querySelector(".remove-player-btn");
-        removeBtn.classList.remove("hidden");
-
-        startingPlayers[selectedPlayer.position].push(selectedPlayer);
-
-        modalList.style.display = "none";
-      } else {
-        alert(
-          `No empty ${selectedPlayer.position} position available. Remove a player first.`
-        );
-      }
-    }
+function correctPlayer (listeFiltred){
+  substitutePlayersContainer.innerHTML = "";
+  if (listeFiltred.length === 0) {
+    substitutePlayersContainer.innerHTML =
+      "<p class='text-gray-500'>No players available for this position.</p>";
+  } else {
+    listeFiltred.forEach((player) => {
+      console.log(player)
+      let playerItem = document.createElement("div");
+      playerItem.className =
+        "flex justify-between items-center p-2 bg-gray-100 rounded-lg shadow-sm";
+        if (player.position=== "GK") {
+          playerItem.innerHTML = `
+         <div class="playerClick cursor-pointer flex justify-center items-center text-black">
+      <div class="">
+        <div class="flex">
+          <div
+            class="bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]"
+            style="
+              background-image: url('${player.card}');
+            "
+          >
+            <div
+              class="w-full h-full flex flex-col gap-0.25 items-center justify-center mt-1.5 sm:mt-3"
+            >
+              <div class="flex">
+                <div class="text-center text-black sm:mb-6 mb-0">
+                  <div class="font-bold sm:text-xs text-[0.5rem]">${player.rating}</div>
+                  <div class="font-semibold sm:text-[0.5rem] text-[0.3rem]">
+                  ${player.position}
+                  </div>
+                </div>
+                <img
+                  src="pics/anonym-removebg-preview.png"
+                  alt="Player Portrait"
+                  class="object-contain mt-2 sm:mt-1 flex sm:h-[70px] sm:w-[70px] h-[35px] w-[35px]"
+                />
+              </div>
+              <div class="text-center flex flex-col items-center pb-2 sm:pb-3">
+                <div class="font-bold sm:text-[0.5rem] text-[0.3rem]">
+                  ${player.player}
+                </div>
+                <div
+                  class="grid grid-cols-6 gap-0.5 lg:gap-1 text-center font-bold sm:text-[0.3rem] text-[0.15rem]"
+                >
+                  <div>DIV<br />${player.stats.diving}</div>
+                  <div>HAN<br />${player.stats.handling}</div>
+                  <div>KIC<br />${player.stats.kicking}</div>
+                  <div>REF<br />${player.stats.reflex}</div>
+                  <div>SPD<br />${player.stats.speed}</div>
+                  <div>POS<br />${player.stats.positioning}</div>
+                </div>
+                <div class="flex gap-1 items-center sm:mt-1 mt-0.5">
+                  <div>
+                    <img
+                      src="${player.country}"
+                      class="object-contain sm:w-[8px] sm:h-[8px] w-[6px] h-[6px]"
+                      alt="Country Flag"
+                    />
+                  </div>
+                  <div>
+                    <img
+                      src="${player.club}"
+                      class="object-contain sm:w-[8px] sm:h-[8px] w-[6px] h-[6px]"
+                      alt="Club Badge"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        `;
+        } else{
+            playerItem.innerHTML = `
+        <div class=" playerClick cursor-pointer flex justify-center items-center text-black">
+      <div class="">
+        <div class="flex">
+          <div
+            class="bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]"
+            style="
+              background-image: url('${player.card}');
+            "
+          >
+            <div
+              class="w-full h-full flex flex-col gap-0.25 items-center justify-center mt-1.5 sm:mt-3"
+            >
+              <div class="flex">
+                <div class="text-center text-black sm:mb-6 mb-0">
+                  <div class="font-bold sm:text-xs text-[0.5rem]">${player.rating}</div>
+                  <div class="font-semibold sm:text-[0.5rem] text-[0.3rem]">
+                  ${player.position}
+                  </div>
+                </div>
+                <img
+                  src="pics/anonym-removebg-preview.png"
+                  alt="Player Portrait"
+                  class="object-contain mt-2 sm:mt-1 flex sm:h-[70px] sm:w-[70px] h-[35px] w-[35px]"
+                />
+              </div>
+              <div class="text-center flex flex-col items-center pb-2 sm:pb-3">
+                <div class="font-bold sm:text-[0.5rem] text-[0.3rem]">
+                  ${player.player}
+                </div>
+                <div
+                  class="grid grid-cols-6 gap-0.5 lg:gap-1 text-center font-bold sm:text-[0.3rem] text-[0.15rem]"
+                >
+                  <div>PAC<br />${player.stats.pace}</div>
+                  <div>SHO<br />${player.stats.shooting}</div>
+                  <div>PAS<br />${player.stats.passing}</div>
+                  <div>DRI<br />${player.stats.dribbling}</div>
+                  <div>DEF<br />${player.stats.dribbling}</div>
+                  <div>PHY<br />${player.stats.physical}</div>
+                </div>
+                <div class="flex gap-1 items-center sm:mt-1 mt-0.5">
+                  <div>
+                    <img
+                      src="${player.country}"
+                      class="object-contain sm:w-[8px] sm:h-[8px] w-[6px] h-[6px]"
+                      alt="Country Flag"
+                    />
+                  </div>
+                  <div>
+                    <img
+                      src="${player.club}"
+                      class="object-contain sm:w-[8px] sm:h-[8px] w-[6px] h-[6px]"
+                      alt="Club Badge"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      `;
+     
+        }
+      substitutePlayersContainer.appendChild(playerItem);
+      document.querySelectorAll(".playerClick").forEach(player => {
+        player.addEventListener("click", ()=>{
+          console.log("click sur "+ player)
+          addTofield(player,buttonId)
+        })
+      })
+    });
   }
-});
+}
+function addTofield(player,buttonId){
+   let btecliker=document.getElementById(buttonId)
+   let parent=btecliker.parentElement
+   let prent2=parent.parentElement
+   prent2.classList.add('hidden')
+    //
+    prent2.parentElement.appendChild(player)   
+   modalList.classList.add('hidden')
+}
+
+// substitutePlayersContainer.addEventListener("click", (event) => {
+//   if (event.target.classList.contains("addPlayerButton")) {
+//     const playerId = parseInt(event.target.getAttribute("data-player-id"));
+//     const selectedPlayer = playersList.find((player) => player.id === playerId);
+
+//     if (selectedPlayer) {
+//       const positionContainer = document.getElementById(selectedPlayer.position);
+
+//       if (positionContainer) {
+//         if (!positionContainer.querySelector(".player-card")) {
+//           positionContainer.innerHTML = ""; // Clear placeholder content
+
+//           // Append the player's card to the position
+//           positionContainer.appendChild(selectedPlayer.cardElement);
+
+//           // Show the remove button for the player card
+//           const removeBtn =
+//             selectedPlayer.cardElement.querySelector(".remove-player-btn");
+//           removeBtn.classList.remove("hidden");
+
+//           // Update the starting players list
+//           startingPlayers[selectedPlayer.position].push(selectedPlayer);
+
+//           // Hide the modal
+//           modalList.classList.add("hidden");
+//         } else {
+//           alert(
+//             `The ${selectedPlayer.position} position is already filled. Remove the current player first.`
+//           );
+//         }
+//       } else {
+//         alert(`No container found for position: ${selectedPlayer.position}`);
+//       }
+//     }
+//   }
+// });
