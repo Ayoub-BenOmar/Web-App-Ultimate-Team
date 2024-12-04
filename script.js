@@ -248,7 +248,6 @@ newPlayer.addEventListener("submit", function (event) {
   }else{
     playerCard.innerHTML = `
     <div class=" flex justify-center items-center text-black">
-      <div class="">
         <div class="flex">
           <div
             class="bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]"
@@ -306,7 +305,6 @@ newPlayer.addEventListener("submit", function (event) {
             </div>
           </div>
         </div>
-      </div>
     </div>
     <button class="remove-player-btn top-0 right-0 m-1 text-white px-2 py-1 rounded hidden">
     <svg
@@ -506,7 +504,7 @@ function correctPlayer (listeFiltred){
       console.log(player)
       let playerItem = document.createElement("div");
       playerItem.className =
-        "flex justify-between items-center p-2 bg-gray-100 rounded-lg shadow-sm";
+        "grid grid-cols-3 items-center p-2 bg-gray-100 rounded-lg shadow-sm";
         if (player.position=== "GK") {
           playerItem.innerHTML = `
          <div class="playerClick cursor-pointer flex justify-center items-center text-black">
@@ -573,9 +571,21 @@ function correctPlayer (listeFiltred){
         `;
         } else{
             playerItem.innerHTML = `
+            
         <div class=" playerClick cursor-pointer flex justify-center items-center text-black">
       <div class="">
         <div class="flex">
+         <button class="remove-player-btn m-1 text-white px-2 py-1 rounded hidden">
+              <svg
+                  class="w-6 h-6 text-gray-800"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"             
+                  >
+                  <path d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                  </svg>
+              </button>
           <div
             class="bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]"
             style="
@@ -648,14 +658,146 @@ function correctPlayer (listeFiltred){
   }
 }
 function addTofield(player,buttonId){
-   let btecliker=document.getElementById(buttonId)
-   let parent=btecliker.parentElement
-   let prent2=parent.parentElement
-   prent2.classList.add('hidden')
+   let btnCliker=document.getElementById(buttonId)
+   let parent=btnCliker.parentElement
+  //  let parent2=parent.parentElement
+  parent.classList.add('hidden')
+  parent.parentElement.appendChild(player);
     //
-    prent2.parentElement.appendChild(player)   
+  //   let playerTitu = document.createElement("div");
+  //   playerTitu.classList.add("playerClick", "cursor-pointer", "flex", "justify-center", "items-center", "text-black")
+  //   playerTitu.innerHTML =  `
+  //   <div class=" playerClick cursor-pointer flex justify-center items-center text-black">
+  //         <div class="">
+  //           <div class="flex">
+  //             <div
+  //               class="bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]"
+  //               style="
+  //                 background-image: url('${player.card}');
+  //               "
+  //             >
+  //               <div
+  //                 class="w-full h-full flex flex-col gap-0.25 items-center justify-center mt-1.5 sm:mt-3"
+  //               >
+  //                 <div class="flex">
+  //                   <div class="text-center text-black sm:mb-6 mb-0">
+  //                     <div class="font-bold sm:text-xs text-[0.5rem]">${player.rating}</div>
+  //                     <div class="font-semibold sm:text-[0.5rem] text-[0.3rem]">
+  //                     ${player.position}
+  //                     </div>
+  //                   </div>
+  //                   <img
+  //                     src="pics/anonym-removebg-preview.png"
+  //                     alt="Player Portrait"
+  //                     class="object-contain mt-2 sm:mt-1 flex sm:h-[70px] sm:w-[70px] h-[35px] w-[35px]"
+  //                   />
+  //                 </div>
+  //                 <div class="text-center flex flex-col items-center pb-2 sm:pb-3">
+  //                   <div class="font-bold sm:text-[0.5rem] text-[0.3rem]">
+  //                     ${player.player}
+  //                   </div>
+  //                   <div
+  //                     class="grid grid-cols-6 gap-0.5 lg:gap-1 text-center font-bold sm:text-[0.3rem] text-[0.15rem]"
+  //                   >
+  //                     <div>PAC<br />${player.stats.pace}</div>
+  //                     <div>SHO<br />${player.stats.shooting}</div>
+  //                     <div>PAS<br />${player.stats.passing}</div>
+  //                     <div>DRI<br />${player.stats.dribbling}</div>
+  //                     <div>DEF<br />${player.stats.deffending}</div>
+  //                     <div>PHY<br />${player.stats.physical}</div>
+  //                   </div>
+  //                   <div class="flex gap-1 items-center sm:mt-1 mt-0.5">
+  //                     <div>
+  //                       <img
+  //                         src="${player.country}"
+  //                         class="object-contain sm:w-[8px] sm:h-[8px] w-[6px] h-[6px]"
+  //                         alt="Country Flag"
+  //                       />
+  //                     </div>
+  //                     <div>
+  //                       <img
+  //                         src="${player.club}"
+  //                         class="object-contain sm:w-[8px] sm:h-[8px] w-[6px] h-[6px]"
+  //                         alt="Club Badge"
+  //                       />
+  //                     </div>
+  //                   </div>
+  //                 </div>
+  //               </div>
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </div>
+  //   `;
+  //     parent2.parentElement.replaceChild(playerTitu, parent2);
    modalList.classList.add('hidden')
 }
+
+// let playerHTML = `
+// <div class=" playerClick cursor-pointer flex justify-center items-center text-black">
+//       <div class="">
+//         <div class="flex">
+//           <div
+//             class="bg-center bg-cover bg-no-repeat sm:h-[150px] sm:w-[100px] h-[80px] w-[50px]"
+//             style="
+//               background-image: url('${player.card}');
+//             "
+//           >
+//             <div
+//               class="w-full h-full flex flex-col gap-0.25 items-center justify-center mt-1.5 sm:mt-3"
+//             >
+//               <div class="flex">
+//                 <div class="text-center text-black sm:mb-6 mb-0">
+//                   <div class="font-bold sm:text-xs text-[0.5rem]">${player.rating}</div>
+//                   <div class="font-semibold sm:text-[0.5rem] text-[0.3rem]">
+//                   ${player.position}
+//                   </div>
+//                 </div>
+//                 <img
+//                   src="pics/anonym-removebg-preview.png"
+//                   alt="Player Portrait"
+//                   class="object-contain mt-2 sm:mt-1 flex sm:h-[70px] sm:w-[70px] h-[35px] w-[35px]"
+//                 />
+//               </div>
+//               <div class="text-center flex flex-col items-center pb-2 sm:pb-3">
+//                 <div class="font-bold sm:text-[0.5rem] text-[0.3rem]">
+//                   ${player.player}
+//                 </div>
+//                 <div
+//                   class="grid grid-cols-6 gap-0.5 lg:gap-1 text-center font-bold sm:text-[0.3rem] text-[0.15rem]"
+//                 >
+//                   <div>PAC<br />${player.stats.pace}</div>
+//                   <div>SHO<br />${player.stats.shooting}</div>
+//                   <div>PAS<br />${player.stats.passing}</div>
+//                   <div>DRI<br />${player.stats.dribbling}</div>
+//                   <div>DEF<br />${player.stats.dribbling}</div>
+//                   <div>PHY<br />${player.stats.physical}</div>
+//                 </div>
+//                 <div class="flex gap-1 items-center sm:mt-1 mt-0.5">
+//                   <div>
+//                     <img
+//                       src="${player.country}"
+//                       class="object-contain sm:w-[8px] sm:h-[8px] w-[6px] h-[6px]"
+//                       alt="Country Flag"
+//                     />
+//                   </div>
+//                   <div>
+//                     <img
+//                       src="${player.club}"
+//                       class="object-contain sm:w-[8px] sm:h-[8px] w-[6px] h-[6px]"
+//                       alt="Club Badge"
+//                     />
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+// `;
+
+// addTofield(playerHTML);
 
 // substitutePlayersContainer.addEventListener("click", (event) => {
 //   if (event.target.classList.contains("addPlayerButton")) {
